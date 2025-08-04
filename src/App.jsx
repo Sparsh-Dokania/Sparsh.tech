@@ -1,25 +1,21 @@
-import React, { useEffect } from 'react'
-import { initLenis } from './utils/lenis'
-// import Preloader from './components/Preloader'
-// import Navbar from './components/Navbar'
-// import Hero from './components/Hero'
+// src/App.jsx
+import { useState } from "react";
+import Preloader from "./components/Preloader";
+// import Hero from "./components/Hero";
 
-useEffect(() => {
-  initLenis()
-}, [])
-
-const App = () => {
-  useEffect(() => {
-    // Setup ScrollTrigger or Lenis here (optional init zone)
-  }, [])
+function App() {
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <>
-      
-      <footer className="bg-black text-white">Footer</footer>
+      {!isLoaded && <Preloader onComplete={() => setIsLoaded(true)} />}
+      {isLoaded && (
+        <main className="relative">
+          {/* <Hero /> */}
+        </main>
+      )}
     </>
-  )
+  );
 }
 
-export default App
-
+export default App;
