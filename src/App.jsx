@@ -11,7 +11,7 @@ function App() {
       {!isLoaded && <Preloader onComplete={() => setIsLoaded(true)} />}
       {isLoaded && (
         <main className="relative">
-          {/* <Hero /> */}
+          <Hero />
         </main>
       )}
     </>
