@@ -5,7 +5,7 @@ function Contact() {
       className="py-[120px] px-10 relative border-t border-t-[rgba(200,255,0,0.12)] min-h-[80vh] flex flex-col justify-center max-[768px]:py-20 max-[768px]:px-5"
     >
       <div className="[font-family:var(--mono)] text-[10px] tracking-[0.25em] uppercase text-[var(--acid)] mb-4 flex items-center gap-3 before:content-[''] before:w-6 before:h-px before:bg-[var(--acid)]">
-        Contact
+        Let&apos;s build something that stands out.
       </div>
       <div className="reveal [font-family:var(--syne)] font-extrabold [font-size:clamp(48px,9vw,120px)] leading-[0.9] tracking-[-0.04em] mb-12 [&_em]:[font-family:var(--serif)] [&_em]:italic [&_em]:font-normal [&_em]:text-[var(--acid)] [&_em]:block">
         Let&apos;s build

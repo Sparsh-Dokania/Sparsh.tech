@@ -9,7 +9,7 @@ function Ticker() {
           Frontend Engineer
         </span>
         <span className="[font-family:var(--mono)] text-[10px] font-bold text-[var(--black)] tracking-[0.15em] uppercase px-6 after:content-['✦'] after:mx-2 after:opacity-50">
-          Available for Hire
+          Available for building things that matter
         </span>
         <span className="[font-family:var(--mono)] text-[10px] font-bold text-[var(--black)] tracking-[0.15em] uppercase px-6 after:content-['✦'] after:mx-2 after:opacity-50">
           React · Tailwind CSS · Node.js
@@ -27,7 +27,7 @@ function Ticker() {
           Frontend Engineer
         </span>
         <span className="[font-family:var(--mono)] text-[10px] font-bold text-[var(--black)] tracking-[0.15em] uppercase px-6 after:content-['✦'] after:mx-2 after:opacity-50">
-          Available for Hire
+          Available for building things that matter
         </span>
         <span className="[font-family:var(--mono)] text-[10px] font-bold text-[var(--black)] tracking-[0.15em] uppercase px-6 after:content-['✦'] after:mx-2 after:opacity-50">
           React · Tailwind CSS · Node.js

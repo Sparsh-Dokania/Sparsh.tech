@@ -14,17 +14,41 @@ function Hero() {
         }}
       ></div>
       <div className="relative z-[2] pt-0 pb-20 px-10 max-[768px]:pt-0 max-[768px]:pb-[60px] max-[768px]:px-5">
-        <div className="[font-family:var(--mono)] text-[10px] tracking-[0.25em] uppercase text-[var(--acid)] mb-6 opacity-0 animate-[fadeUp_0.8s_ease_0.2s_forwards]">
+        <div className="[font-family:var(--mono)] text-[10px] tracking-[0.25em] uppercase text-[var(--acid)] mb-3 opacity-0 animate-[fadeUp_0.8s_ease_0.2s_forwards]">
           Frontend Engineer · UI that Feels Alive
         </div>
-        <h1 className="[font-family:var(--syne)] font-extrabold [font-size:clamp(72px,12vw,160px)] leading-[0.88] tracking-[-0.04em] text-[var(--white)] overflow-hidden mb-4">
-          <span className="block opacity-0 translate-y-full animate-[slideUp_0.9s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:0.4s]">
+        <h1 className="[font-family:var(--syne)] font-extrabold [font-size:clamp(72px,12vw,160px)] leading-[0.88] tracking-[-0.04em] text-[var(--white)] mb-4">
+          <span
+            className="block"
+            style={{
+              opacity: 0,
+              transform: 'translateY(100%)',
+              animation: 'slideUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards',
+              animationDelay: '0.4s',
+            }}
+          >
             SPARSH
           </span>
-          <span className="block opacity-0 translate-y-full text-[var(--acid)] animate-[slideUp_0.9s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:0.55s]">
+          <span
+            className="block text-[var(--acid)]"
+            style={{
+              opacity: 0,
+              transform: 'translateY(100%)',
+              animation: 'slideUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards',
+              animationDelay: '0.55s',
+            }}
+          >
             DOKANIA
           </span>
-          <span className="block opacity-0 translate-y-full italic [font-family:var(--serif)] [font-size:clamp(60px,10vw,130px)] animate-[slideUp_0.9s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:0.7s]">
+          <span
+            className="block italic [font-family:var(--serif)] [font-size:clamp(60px,10vw,130px)] leading-[0.95]"
+            style={{
+              opacity: 0,
+              transform: 'translateY(100%)',
+              animation: 'slideUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards',
+              animationDelay: '0.7s',
+            }}
+          >
             here.
           </span>
         </h1>

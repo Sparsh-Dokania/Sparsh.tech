@@ -15,10 +15,7 @@ function App() {
   useEffect(() => {
     const cursor = document.getElementById('cursor')
     const ring = document.getElementById('cursor-ring')
-
-    if (!cursor || !ring) {
-      return undefined
-    }
+    const hasCursor = Boolean(cursor && ring)
 
     let mx = 0
     let my = 0
@@ -29,22 +26,31 @@ function App() {
     const onMouseMove = (event) => {
       mx = event.clientX
       my = event.clientY
-      cursor.style.left = `${mx}px`
-      cursor.style.top = `${my}px`
+      if (hasCursor) {
+        cursor.style.left = `${mx}px`
+        cursor.style.top = `${my}px`
+      }
     }
 
-    document.addEventListener('mousemove', onMouseMove)
+    if (hasCursor) {
+      document.addEventListener('mousemove', onMouseMove)
+    }
 
     const lerpRing = () => {
       rx += (mx - rx) * 0.12
       ry += (my - ry) * 0.12
-      ring.style.left = `${rx}px`
-      ring.style.top = `${ry}px`
+      if (hasCursor) {
+        ring.style.left = `${rx}px`
+        ring.style.top = `${ry}px`
+      }
       rafId = window.requestAnimationFrame(lerpRing)
     }
 
-    rafId = window.requestAnimationFrame(lerpRing)
+    if (hasCursor) {
+      rafId = window.requestAnimationFrame(lerpRing)
+    }
 
+    document.documentElement.classList.add('reveal-ready')
     const revealElements = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver(
       (entries) => {
@@ -82,34 +88,45 @@ function App() {
 
     const projectItems = document.querySelectorAll('.project-item')
     const onProjectEnter = () => {
-      cursor.style.width = '60px'
-      cursor.style.height = '60px'
+      if (hasCursor) {
+        cursor.style.width = '60px'
+        cursor.style.height = '60px'
+      }
     }
     const onProjectLeave = () => {
-      cursor.style.width = '12px'
-      cursor.style.height = '12px'
+      if (hasCursor) {
+        cursor.style.width = '12px'
+        cursor.style.height = '12px'
+      }
     }
 
-    projectItems.forEach((item) => {
-      item.addEventListener('mouseenter', onProjectEnter)
-      item.addEventListener('mouseleave', onProjectLeave)
-    })
+    if (hasCursor) {
+      projectItems.forEach((item) => {
+        item.addEventListener('mouseenter', onProjectEnter)
+        item.addEventListener('mouseleave', onProjectLeave)
+      })
 
-    if (window.matchMedia('(pointer: coarse)').matches) {
-      cursor.style.display = 'none'
-      ring.style.display = 'none'
-      document.body.style.cursor = 'auto'
+      if (window.matchMedia('(pointer: coarse)').matches) {
+        cursor.style.display = 'none'
+        ring.style.display = 'none'
+        document.body.style.cursor = 'auto'
+      }
     }
 
     return () => {
-      document.removeEventListener('mousemove', onMouseMove)
-      window.cancelAnimationFrame(rafId)
+      document.documentElement.classList.remove('reveal-ready')
+      if (hasCursor) {
+        document.removeEventListener('mousemove', onMouseMove)
+        window.cancelAnimationFrame(rafId)
+      }
       observer.disconnect()
       window.removeEventListener('scroll', onScroll)
-      projectItems.forEach((item) => {
-        item.removeEventListener('mouseenter', onProjectEnter)
-        item.removeEventListener('mouseleave', onProjectLeave)
-      })
+      if (hasCursor) {
+        projectItems.forEach((item) => {
+          item.removeEventListener('mouseenter', onProjectEnter)
+          item.removeEventListener('mouseleave', onProjectLeave)
+        })
+      }
     }
   }, [])
 

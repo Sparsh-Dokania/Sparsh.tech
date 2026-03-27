@@ -16,15 +16,15 @@ function About() {
             <br />
             Design is the
             <br />
-            <em>soul.</em>
+            <em className="text-[var(--acid)]">soul.</em>
           </h2>
           <div className="reveal reveal-delay-2 grid [grid-template-columns:repeat(3,1fr)] gap-px mt-12 border border-[rgba(200,255,0,0.1)] bg-[rgba(200,255,0,0.1)] max-[768px]:[grid-template-columns:1fr]">
             <div className="py-6 px-5 bg-[var(--black)]">
               <div className="[font-family:var(--syne)] font-extrabold text-[42px] text-[var(--acid)] leading-none">
-                3+
+                1+
               </div>
               <div className="text-[10px] tracking-[0.15em] uppercase text-[rgba(242,237,228,0.4)] mt-1.5">
-                Years building
+                Year building & learning
               </div>
             </div>
             <div className="py-6 px-5 bg-[var(--black)]">
@@ -47,18 +47,29 @@ function About() {
         </div>
         <div className="reveal reveal-delay-1">
           <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
-            I&apos;m a <strong>frontend engineer</strong> who sits at the edge of engineering and design
-            — not in one camp, not in the other. I care equally about <strong>how things work</strong>{' '}
-            and <strong>how things feel</strong>.
+            I&apos;m Sparsh Dokania — a frontend-focused builder working at the intersection of
+            engineering and experience.
           </p>
           <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
-            Currently going <strong>fullstack</strong> — building out my backend muscle while keeping
-            that frontend edge sharp. I believe the best digital products are built by people who can{' '}
-            <strong>see the whole picture</strong>.
+            Most interfaces today are static. They render.
+            <br />
+            I&apos;m more interested in how they respond.
           </p>
           <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
-            When I&apos;m not writing code, I&apos;m studying interfaces that made people stop and say{' '}
-            <em>&quot;how did they do that?&quot;</em> — and then figuring out how to do that.
+            Every project I build is an attempt to push that line — making interfaces feel alive,
+            intentional, and reactive.
+          </p>
+          <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
+            No internships. No agency work.
+            <br />
+            Just self-built systems, broken things, and rebuilt them better.
+          </p>
+          <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
+            Currently expanding into backend to understand the full system — not just how it looks,
+            but how it works underneath.
+          </p>
+          <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-0 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
+            No templates. No copy-paste. Everything here was built to understand — not just to show.
           </p>
         </div>
       </div>
