@@ -1,14 +1,14 @@
-// export default function Footer() {
-//   return (
-//     <footer className="bg-gray-900 text-white py-6 mt-16">
-//       <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
-//         <p>© {new Date().getFullYear()} Sparsh Dokania</p>
-//         <div className="flex gap-6">
-//           <a href="https://github.com/yourusername" target="_blank" className="hover:text-blue-400">GitHub</a>
-//           <a href="https://linkedin.com/in/yourusername" target="_blank" className="hover:text-blue-400">LinkedIn</a>
-//           <a href="mailto:your@email.com" className="hover:text-blue-400">Email</a>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// }
+function Footer() {
+  return (
+    <footer className="py-8 px-10 border-t border-t-[rgba(200,255,0,0.08)] flex justify-between items-center max-[768px]:flex-col max-[768px]:gap-2 max-[768px]:text-center">
+      <div className="text-[10px] text-[rgba(242,237,228,0.2)] tracking-[0.1em]">
+        © 2025 Your Name — All rights reserved
+      </div>
+      <div className="text-[10px] text-[rgba(242,237,228,0.2)] tracking-[0.08em]">
+        Built with <span className="text-[var(--acid)]">precision</span> · Signal/Noise
+      </div>
+    </footer>
+  )
+}
+
+export default Footer
