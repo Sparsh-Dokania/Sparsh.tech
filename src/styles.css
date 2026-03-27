@@ -70,6 +70,50 @@ html.reveal-ready .reveal.in-view {
   transition-delay: 0.35s;
 }
 
+/* Active project state memory */
+.project-active {
+  opacity: 1 !important;
+}
+
+.project-active::before {
+  opacity: 0.08 !important;
+}
+
+/* Performance: will-change for animated elements */
+.project-item {
+  will-change: transform, scale, opacity;
+}
+
+.project-preview {
+  will-change: transform, opacity;
+}
+
+.exp-desc-wrap {
+  will-change: max-height, opacity;
+}
+
+#cursor {
+  will-change: transform, width, height;
+}
+
+#cursor-ring {
+  will-change: transform;
+}
+
+/* Signature distortion effect on hover over hero */
+@keyframes rgbShift {
+  0%, 100% {
+    text-shadow: none;
+  }
+  50% {
+    text-shadow: -1px 0 rgba(255,45,45,0.3), 1px 0 rgba(200,255,0,0.3);
+  }
+}
+
+.hero-distort:hover {
+  animation: rgbShift 0.4s ease-in-out;
+}
+
 @keyframes ticker {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
