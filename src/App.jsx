@@ -12,6 +12,7 @@ import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import './styles.css'
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   useEffect(() => {
@@ -214,6 +215,7 @@ function App() {
       <HowIBuild />
       <Experience />
       <Contact />
+       <Analytics />
       <Footer />
     </>
   )
