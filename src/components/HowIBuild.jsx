@@ -27,7 +27,7 @@ function HowIBuild() {
       </div>
 
       <div className="grid [grid-template-columns:repeat(2,1fr)] gap-12 max-[768px]:grid-cols-1 max-[768px]:gap-8">
-        <div className="reveal reveal-delay-1 flex flex-col gap-2">
+        <div className="magnetic-target reveal reveal-delay-1 flex flex-col gap-2">
           <div className="[font-family:var(--syne)] font-bold text-lg text-[var(--white)]">
             01 · Break It Down
           </div>
@@ -36,7 +36,7 @@ function HowIBuild() {
           </p>
         </div>
 
-        <div className="reveal reveal-delay-1 flex flex-col gap-2">
+        <div className="magnetic-target reveal reveal-delay-1 flex flex-col gap-2">
           <div className="[font-family:var(--syne)] font-bold text-lg text-[var(--white)]">
             02 · Build Fast, Test Faster
           </div>
@@ -45,7 +45,7 @@ function HowIBuild() {
           </p>
         </div>
 
-        <div className="reveal reveal-delay-2 flex flex-col gap-2">
+        <div className="magnetic-target reveal reveal-delay-2 flex flex-col gap-2">
           <div className="[font-family:var(--syne)] font-bold text-lg text-[var(--white)]">
             03 · Motion First
           </div>
@@ -54,7 +54,7 @@ function HowIBuild() {
           </p>
         </div>
 
-        <div className="reveal reveal-delay-2 flex flex-col gap-2">
+        <div className="magnetic-target reveal reveal-delay-2 flex flex-col gap-2">
           <div className="[font-family:var(--syne)] font-bold text-lg text-[var(--white)]">
             04 · Polish Every Pixel
           </div>
@@ -63,7 +63,7 @@ function HowIBuild() {
           </p>
         </div>
 
-        <div className="reveal reveal-delay-3 flex flex-col gap-2">
+        <div className="magnetic-target reveal reveal-delay-3 flex flex-col gap-2">
           <div className="[font-family:var(--syne)] font-bold text-lg text-[var(--white)]">
             05 · Measure Performance
           </div>

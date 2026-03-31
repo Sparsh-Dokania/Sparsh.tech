@@ -53,7 +53,7 @@ function Hero() {
           </span>
         </h1>
         <div className="flex items-end justify-between mt-10 opacity-0 animate-[fadeUp_0.9s_ease_1s_forwards]">
-          <p className="[font-family:var(--mono)] text-[13px] text-[rgba(242,237,228,0.5)] leading-[1.8] max-w-[360px] [&_strong]:text-[var(--acid)] [&_strong]:font-bold">
+          <p className="magnetic-target [font-family:var(--mono)] text-[13px] text-[rgba(242,237,228,0.5)] leading-[1.8] max-w-[360px] [&_strong]:text-[var(--acid)] [&_strong]:font-bold">
             I build <strong>interfaces that feel alive</strong>.
             <br />
             Engineering precision meets design instinct —
