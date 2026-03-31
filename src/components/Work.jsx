@@ -1,6 +1,10 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 
+const iphoneVideo = '/assets/videos/AppleiPhone.mp4'
+const k72Video = '/assets/videos/k72.mp4'
+const gamingVideo = '/assets/videos/RedefineGaming.mp4'
+
 function Work() {
   const workRef = useRef(null)
 
@@ -85,9 +89,21 @@ function Work() {
             )
 
           if (video) {
-            video.currentTime = 0
-            video.play().catch(() => {})
-          }
+  const playVideo = () => {
+    video.currentTime = 0
+
+    const promise = video.play()
+    if (promise !== undefined) {
+      promise.catch(() => {})
+    }
+  }
+
+  if (video.readyState >= 2) {
+    playVideo()
+  } else {
+    video.addEventListener('loadeddata', playVideo, { once: true })
+  }
+}
         }
 
         const onLeave = () => {
@@ -194,8 +210,8 @@ function Work() {
           </div>
           <div className="text-2xl text-[rgba(242,237,228,0.15)] group-hover:text-[var(--acid)] group-hover:translate-x-1 group-hover:-translate-y-1">↗</div>
           <div className="project-preview pointer-events-none absolute right-[-18px] top-1/2 -translate-y-1/2 translate-x-full w-[260px] rounded-md border border-[rgba(200,255,0,0.22)] bg-[rgba(8,8,8,0.92)] p-2 shadow-[0_18px_60px_rgba(0,0,0,0.45)] max-[768px]:hidden">
-            <video className="w-full h-[140px] object-cover rounded-[3px]" muted loop playsInline preload="metadata">
-              <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+            <video className="w-full h-[140px] object-cover rounded-[3px]" muted loop playsInline preload="auto">
+              <source src={iphoneVideo} type="video/mp4" />
             </video>
             <div className="mt-2 [font-family:var(--mono)] text-[10px] tracking-[0.15em] uppercase text-[var(--acid)]">View Project ↗</div>
           </div>
@@ -219,8 +235,8 @@ function Work() {
           </div>
           <div className="text-2xl text-[rgba(242,237,228,0.15)] group-hover:text-[var(--acid)] group-hover:translate-x-1 group-hover:-translate-y-1">↗</div>
           <div className="project-preview pointer-events-none absolute right-[-18px] top-1/2 -translate-y-1/2 translate-x-full w-[260px] rounded-md border border-[rgba(200,255,0,0.22)] bg-[rgba(8,8,8,0.92)] p-2 shadow-[0_18px_60px_rgba(0,0,0,0.45)] max-[768px]:hidden">
-            <video className="w-full h-[140px] object-cover rounded-[3px]" muted loop playsInline preload="metadata">
-              <source src="./assets/videos/k72.mp4" type="video/mp4" />
+            <video className="w-full h-[140px] object-cover rounded-[3px]" muted loop playsInline preload="auto">
+              <source src={k72Video} type="video/mp4" />
             </video>
             <div className="mt-2 [font-family:var(--mono)] text-[10px] tracking-[0.15em] uppercase text-[var(--acid)]">View Project ↗</div>
           </div>
@@ -244,8 +260,8 @@ function Work() {
           </div>
           <div className="text-2xl text-[rgba(242,237,228,0.15)] group-hover:text-[var(--acid)] group-hover:translate-x-1 group-hover:-translate-y-1">↗</div>
           <div className="project-preview pointer-events-none absolute right-[-18px] top-1/2 -translate-y-1/2 translate-x-full w-[260px] rounded-md border border-[rgba(200,255,0,0.22)] bg-[rgba(8,8,8,0.92)] p-2 shadow-[0_18px_60px_rgba(0,0,0,0.45)] max-[768px]:hidden">
-            <video className="w-full h-[140px] object-cover rounded-[3px]" muted loop playsInline preload="metadata">
-              <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+            <video className="w-full h-[140px] object-cover rounded-[3px]" muted loop playsInline preload="auto">
+              <source src={gamingVideo} type="video/mp4" />
             </video>
             <div className="mt-2 [font-family:var(--mono)] text-[10px] tracking-[0.15em] uppercase text-[var(--acid)]">View Project ↗</div>
           </div>

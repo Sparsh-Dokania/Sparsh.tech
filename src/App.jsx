@@ -215,7 +215,7 @@ function App() {
       <HowIBuild />
       <Experience />
       <Contact />
-       <Analytics />
+      <Analytics />
       <Footer />
     </>
   )
