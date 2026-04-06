@@ -4,7 +4,7 @@ const signals = [
   'MODE: BUILDING IN MOTION',
   'SYSTEM: SIGNAL OVER NOISE',
   'OUTPUT: REAL-TIME INTERFACES',
-  'FOCUS: PERFORMANCE × EXPERIENCE',
+  'FOCUS: PERFORMANCE Ã— EXPERIENCE',
 ]
 
 const loopedSignals = [...signals, ...signals]
@@ -13,14 +13,15 @@ const separator = '\u2726'
 function Ticker() {
   return (
     <div
-      className="group fixed top-0 left-0 right-0 z-[100] flex h-7 items-center overflow-hidden bg-[var(--acid)] max-[768px]:h-6"
-      aria-hidden="true"
+      className="hover:scale-[1.01]
+transition-transform duration-300 group fixed top-0 left-0 right-0 z-[100] flex h-7 items-center overflow-hidden bg-[var(--acid)] max-[768px]:h-6 "
+      aria-hidden="true " 
     >
       <div className="pointer-events-none absolute inset-0 opacity-[0.08] mix-blend-overlay bg-[url('/noise.png')]" />
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[var(--acid)] via-[var(--acid)]/80 to-transparent backdrop-blur-[2px]" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[var(--acid)] via-[var(--acid)]/80 to-transparent backdrop-blur-[2px]" />
 
-      <div className="flex min-w-max shrink-0 whitespace-nowrap will-change-transform animate-[ticker_22s_cubic-bezier(0.4,0,0.2,1)_infinite] group-hover:[animation-duration:14s]">
+      <div className="flex min-w-max shrink-0 whitespace-nowrap will-change-transform animate-[ticker_22s_cubic-bezier(0.4,0,0.2,1)_infinite] hover:[animation-play-state:paused] ">
         {loopedSignals.map((signal, index) => (
           <span
             key={`${signal}-${index}`}
