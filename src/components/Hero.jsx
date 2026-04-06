@@ -58,7 +58,7 @@ function Hero() {
             <br />
             Engineering precision meets design instinct —
             <br />
-            from pixel to production.
+            from pixel to production. 
           </p>
           <div className="flex flex-col items-center gap-2 text-[9px] tracking-[0.2em] uppercase text-[rgba(242,237,228,0.3)]">
             <div
