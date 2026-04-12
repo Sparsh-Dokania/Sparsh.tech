@@ -154,7 +154,7 @@ function App() {
     revealElements.forEach((element) => observer.observe(element));
 
     const hero = document.querySelector("#hero");
-    const heroGrid = hero?.querySelector('[style*="backgroundImage"]');
+    const heroGrid = hero?.querySelector(".hero-bg-layer");
     const nav = document.querySelector("nav");
     const sections = Array.from(document.querySelectorAll("section[id]"));
 
@@ -382,7 +382,6 @@ function App() {
 
   return (
     <>
-      <NoiseBackground />
       <Cursor />
       <Ticker />
       <Navbar />

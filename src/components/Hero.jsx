@@ -1,5 +1,4 @@
-import MagneticText from "./MagneticText";
-import ParticleText from "./ParticleText";
+import ProximityRotateText from "./ProximityRotateText";
 function Hero() {
   return (
     <section
@@ -24,15 +23,15 @@ function Hero() {
         <div className="[font-family:var(--syne)] font-extrabold [font-size:clamp(72px,12vw,160px)] leading-[0.88] tracking-[-0.04em] text-[var(--white)] mb-4">
           <h1 className="[font-family:var(--syne)] font-extrabold [font-size:clamp(72px,12vw,160px)] leading-[0.88] tracking-[-0.04em] text-[var(--white)] mb-4">
             <div>
-              <RollingText text="SPARSH" />
+              <ProximityRotateText text="SPARSH" />
             </div>
 
             <div className="text-[var(--acid)]">
-              <RollingText text="DOKANIA" />
+              <ProximityRotateText text="DOKANIA" />
             </div>
 
-            <div className="italic [font-family:var(--serif)] text-[clamp(40px,6vw,90px)]">
-              <RollingText text="— builds what responds." />
+            <div className="italic [font-family:var(--serif)] text-[clamp(40px,10vw,45px)]">
+              <span>— builds what responds</span>
             </div>
           </h1>
         </div>
