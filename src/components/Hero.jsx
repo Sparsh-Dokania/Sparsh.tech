@@ -30,8 +30,23 @@ function Hero() {
               <ProximityRotateText text="DOKANIA" />
             </div>
 
-            <div className="italic [font-family:var(--serif)] text-[clamp(40px,10vw,45px)]">
-              <span>— builds what responds</span>
+            <div
+              className="italic [font-family:var(--serif)] 
+  text-[clamp(28px,6vw,56px)] 
+  leading-[1.15] 
+  tracking-[-0.01em] 
+  text-[rgba(242,237,228,0.9)]"
+            >
+              <span
+                className="block opacity-0 translate-y-[20px] 
+    animate-[fadeUp_1s_ease_0.6s_forwards]
+    transition-all duration-500 
+    ease-[cubic-bezier(0.16,1,0.3,1)]
+    hover:tracking-[0.02em]
+    hover:text-[var(--white)]"
+              >
+                — builds what responds
+              </span>
             </div>
           </h1>
         </div>
