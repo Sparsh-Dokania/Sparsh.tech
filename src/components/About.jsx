@@ -2,7 +2,7 @@ function About() {
   return (
     <section
       id="about"
-      className="py-[120px] px-10 relative border-t border-t-[rgba(200,255,0,0.12)] max-[768px]:py-20 max-[768px]:px-5"
+      className="relative min-h-screen px-10 py-[120px] border-t border-t-[rgba(200,255,0,0.12)] max-[768px]:px-5 max-[768px]:py-20"
     >
       <div className="[font-family:var(--mono)] text-[10px] tracking-[0.25em] uppercase text-[var(--acid)] mb-4 flex items-center gap-3 before:content-[''] before:w-6 before:h-px before:bg-[var(--acid)]">
         About

@@ -1,7 +1,7 @@
 function StackMarquee() {
   return (
     <div
-      className="p-0 overflow-hidden border-y border-y-[rgba(200,255,0,0.08)]"
+      className="snap-flow-gap p-0 overflow-hidden border-y border-y-[rgba(200,255,0,0.08)]"
       aria-label="Tech stack"
     >
       <div className="flex w-max animate-[stack-scroll_20s_linear_infinite]">

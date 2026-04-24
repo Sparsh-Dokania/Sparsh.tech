@@ -2,7 +2,7 @@ function Contact() {
   return (
     <section
       id="contact"
-      className="py-[120px] px-10 relative border-t border-t-[rgba(200,255,0,0.12)] min-h-[80vh] flex flex-col justify-center max-[768px]:py-20 max-[768px]:px-5"
+      className="relative flex min-h-screen flex-col justify-center px-10 py-[120px] border-t border-t-[rgba(200,255,0,0.12)] max-[768px]:px-5 max-[768px]:py-20"
     >
       <div className="[font-family:var(--mono)] text-[10px] tracking-[0.25em] uppercase text-[var(--acid)] mb-4 flex items-center gap-3 before:content-[''] before:w-6 before:h-px before:bg-[var(--acid)]">
         Let&apos;s build something that stands out.

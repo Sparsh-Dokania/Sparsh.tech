@@ -29,7 +29,7 @@ function Navbar() {
 
   // Active section detection
   useEffect(() => {
-    const sections = document.querySelectorAll("section")
+    const sections = document.querySelectorAll("section[id]")
 
     const observer = new IntersectionObserver(
       (entries) => {

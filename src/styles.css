@@ -17,8 +17,9 @@
   }
 
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
     scroll-padding-top: var(--section-scroll-offset);
+    overscroll-behavior-y: contain;
   }
 
   body {
@@ -32,8 +33,29 @@
   }
 }
 
+main.portfolio-scroll {
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 section[id] {
+  min-height: 100vh;
   scroll-margin-top: var(--section-scroll-offset);
+}
+
+.snap-flow-gap {
+  min-height: auto;
+  scroll-snap-align: none;
+}
+
+nav.nav-scrolled > div {
+  background: rgba(8, 8, 8, 0.92);
+  backdrop-filter: blur(12px);
+  border-color: rgba(200, 255, 0, 0.08);
 }
 
 .corner {
@@ -99,7 +121,7 @@ html.reveal-ready .reveal.in-view {
 
 /* Performance: will-change for animated elements */
 .project-item {
-  will-change: transform, scale, opacity;
+  will-change: transform, opacity;
 }
 
 .project-preview {
@@ -116,6 +138,30 @@ html.reveal-ready .reveal.in-view {
 
 #cursor-ring {
   will-change: transform;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 96px;
+  }
+
+  section[id] {
+    min-height: 100svh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  main.portfolio-scroll {
+    scroll-snap-type: none;
+  }
+
+  section {
+    scroll-snap-stop: normal;
+  }
 }
 
 /* Signature distortion effect on hover over hero */
