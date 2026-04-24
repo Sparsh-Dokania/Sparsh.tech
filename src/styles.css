@@ -13,17 +13,18 @@
     --mono: 'Space Mono', monospace;
     --syne: 'Syne', sans-serif;
     --serif: 'DM Serif Display', serif;
-    --section-scroll-offset: 112px;
+    --section-scroll-offset: 104px;
   }
 
   html {
     scroll-behavior: smooth;
     scroll-padding-top: var(--section-scroll-offset);
+    scroll-snap-type: y proximity;
     overscroll-behavior-y: contain;
   }
 
   body {
-    @apply bg-[var(--black)] text-[var(--white)] [font-family:var(--mono)] overflow-x-hidden cursor-none;
+    @apply min-h-screen bg-[var(--black)] text-[var(--white)] [font-family:var(--mono)] overflow-x-hidden cursor-none;
   }
 
   body::before {
@@ -33,18 +34,9 @@
   }
 }
 
-main.portfolio-scroll {
-  scroll-snap-type: y mandatory;
-}
-
-section {
+main.portfolio-scroll > section {
+  min-height: 100svh;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-section[id] {
-  min-height: 100vh;
-  scroll-margin-top: var(--section-scroll-offset);
 }
 
 .snap-flow-gap {
@@ -57,18 +49,6 @@ nav.nav-scrolled > div {
   backdrop-filter: blur(12px);
   border-color: rgba(200, 255, 0, 0.08);
 }
-
-.corner {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border: 1px solid var(--acid);
-}
-
-.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
-.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
-.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
-.br { bottom: 0; right: 0; border-left: none; border-top: none; }
 
 body:has(a:hover) #cursor,
 body:has(button:hover) #cursor {
@@ -141,26 +121,19 @@ html.reveal-ready .reveal.in-view {
 }
 
 @media (max-width: 768px) {
-  html {
-    scroll-padding-top: 96px;
+  :root {
+    --section-scroll-offset: 88px;
   }
 
-  section[id] {
-    min-height: 100svh;
+  html {
+    scroll-padding-top: var(--section-scroll-offset);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  main.portfolio-scroll {
     scroll-snap-type: none;
-  }
-
-  section {
-    scroll-snap-stop: normal;
   }
 }
 
@@ -217,14 +190,3 @@ html.reveal-ready .reveal.in-view {
   to { transform: translateX(-50%); }
 }
 
-@keyframes glitch-1 {
-  0%, 100% { clip-path: inset(0 0 90% 0); transform: translateX(-2px); }
-  25% { clip-path: inset(40% 0 50% 0); transform: translateX(2px); }
-  75% { clip-path: inset(80% 0 5% 0); transform: translateX(-1px); }
-}
-
-@keyframes glitch-2 {
-  0%, 100% { clip-path: inset(80% 0 0 0); transform: translateX(2px); }
-  40% { clip-path: inset(20% 0 60% 0); transform: translateX(-2px); }
-  70% { clip-path: inset(60% 0 30% 0); transform: translateX(1px); }
-}
