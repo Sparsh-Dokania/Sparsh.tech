@@ -33,6 +33,35 @@ const processSteps = [
   },
 ];
 
+const bentoLayout = [
+  {
+    card: "md:col-span-2 xl:col-span-7 min-h-[260px] md:min-h-[285px]",
+    content: "md:max-w-[82%]",
+    title: "text-[clamp(24px,2.6vw,40px)]",
+  },
+  {
+    card: "md:col-span-1 xl:col-span-5 min-h-[260px] md:min-h-[285px]",
+    content: "md:max-w-[92%]",
+    title: "text-[clamp(22px,2.1vw,32px)]",
+  },
+  {
+    card: "md:col-span-1 xl:col-span-5 min-h-[240px] md:min-h-[270px]",
+    content: "md:max-w-[92%]",
+    title: "text-[clamp(22px,2.1vw,32px)]",
+  },
+  {
+    card: "md:col-span-2 xl:col-span-7 min-h-[260px] md:min-h-[285px]",
+    content: "md:max-w-[82%]",
+    title: "text-[clamp(24px,2.6vw,40px)]",
+  },
+  {
+    card: "md:col-span-2 xl:col-span-12 min-h-[285px] md:min-h-[340px]",
+    content: "md:max-w-[62%] xl:max-w-[52%]",
+    title: "text-[clamp(28px,3.2vw,52px)]",
+    featured: true,
+  },
+];
+
 function HowIBuild() {
   return (
     <section className="relative min-h-screen border-t border-t-[rgba(200,255,0,0.12)] px-10 py-[120px] max-[768px]:px-5 max-[768px]:py-20">
@@ -63,8 +92,11 @@ function HowIBuild() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 max-[768px]:grid-cols-1 max-[768px]:gap-4">
-        {processSteps.map((step, index) => (
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-12 xl:gap-6">
+        {processSteps.map((step, index) => {
+          const layout = bentoLayout[index];
+
+          return (
           <CardSpotlight
             key={step.number}
             colors={[
@@ -73,12 +105,10 @@ function HowIBuild() {
             ]}
             animationSpeed={4.5}
             className={[
-              "magnetic-target reveal group min-h-[230px] overflow-hidden rounded-2xl border border-[rgba(200,255,0,0.08)] bg-[rgba(12,12,12,0.78)] p-7 backdrop-blur-sm transition duration-500 ease-out",
+              "magnetic-target reveal group overflow-hidden rounded-2xl border border-[rgba(200,255,0,0.08)] bg-[rgba(12,12,12,0.78)] p-6 backdrop-blur-sm transition duration-500 ease-out md:p-7 xl:p-8",
               "hover:-translate-y-1 hover:border-[rgba(200,255,0,0.28)] hover:shadow-[0_18px_60px_rgba(200,255,0,0.08)]",
               "max-[768px]:min-h-[205px] max-[768px]:rounded-xl max-[768px]:p-5 max-[768px]:hover:translate-y-0",
-              index === 4
-                ? "col-span-2 mx-auto w-[calc(50%-0.75rem)] max-[768px]:col-span-1 max-[768px]:w-full"
-                : "",
+              layout.card,
               index < 2
                 ? "reveal-delay-1"
                 : index < 4
@@ -86,6 +116,12 @@ function HowIBuild() {
                   : "reveal-delay-3",
             ].join(" ")}
           >
+            {layout.featured ? (
+              <span className="pointer-events-none absolute -right-2 -top-10 z-0 [font-family:var(--syne)] text-[180px] font-extrabold leading-none tracking-[-0.08em] text-[rgba(200,255,0,0.035)] md:-right-1 md:-top-16 md:text-[260px] xl:text-[320px]">
+                {step.number}
+              </span>
+            ) : null}
+
             <div className="relative z-10 flex h-full flex-col">
               <div className="mb-8 flex items-center justify-between max-[768px]:mb-6">
                 <span className="[font-family:var(--mono)] text-[11px] font-bold tracking-[0.22em] text-[var(--acid)]">
@@ -94,8 +130,10 @@ function HowIBuild() {
                 <span className="h-px w-10 bg-[rgba(200,255,0,0.28)] transition-all duration-500 group-hover:w-16 group-hover:bg-[rgba(200,255,0,0.65)] max-[768px]:w-8" />
               </div>
 
-              <div className="mt-auto">
-                <h3 className="mb-4 [font-family:var(--syne)] text-[clamp(22px,2.2vw,32px)] font-bold leading-[1] tracking-[-0.02em] text-[var(--white)]">
+              <div className={`mt-auto ${layout.content}`}>
+                <h3
+                  className={`mb-4 [font-family:var(--syne)] font-bold leading-[1] tracking-[-0.02em] text-[var(--white)] ${layout.title}`}
+                >
                   {step.title}
                 </h3>
                 <p className="[font-family:var(--mono)] text-xs leading-[1.9] text-[rgba(242,237,228,0.58)] transition-colors duration-500 group-hover:text-[rgba(242,237,228,0.72)] max-[768px]:text-[11px] max-[768px]:leading-[1.8]">
@@ -104,7 +142,8 @@ function HowIBuild() {
               </div>
             </div>
           </CardSpotlight>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

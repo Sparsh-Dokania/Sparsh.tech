@@ -5,148 +5,258 @@ const iphoneVideo = "/assets/videos/AppleiPhone.mp4";
 const k72Video = "/assets/videos/k72.mp4";
 const gamingVideo = "/assets/videos/RedefineGaming.mp4";
 
+const projects = [
+  {
+    id: "001",
+    title: "iPhone 3D Experience",
+    link: "https://appleiphone-project.vercel.app/",
+    video: iphoneVideo,
+    description: [
+      "A fully interactive 3D product interface built from scratch.",
+      "Not a clone - a reconstruction of how premium product experiences are engineered.",
+      "Integrated real-time 3D rendering using Three.js.",
+      "Built scroll-synced animation systems with GSAP.",
+      "Optimized motion and performance across devices.",
+    ],
+  },
+  {
+    id: "002",
+    title: "K72 Motion System",
+    link: "https://k72-pink-three.vercel.app",
+    video: k72Video,
+    description: [
+      "An animation-first frontend focused on rhythm, pacing, and feel.",
+      "Designed interaction states as reusable motion patterns.",
+      "Built modular GSAP timelines for controlled sequencing.",
+      "Structured components for scalable visual choreography.",
+      "Balanced expressiveness with performance constraints.",
+    ],
+  },
+  {
+    id: "003",
+    title: "Zentry-Inspired Gaming Interface",
+    link: "https://redefine-gaming-steel.vercel.app",
+    video: gamingVideo,
+    description: [
+      "A high-intensity landing experience translated into performant frontend code.",
+      "Explored cinematic transitions and interaction layering.",
+      "Implemented composited motion stacks with responsive behavior.",
+      "Refined typography and movement to match a game-like tone.",
+      "Maintained smooth frame pacing under heavy animation load.",
+    ],
+  },
+];
+
+function playVideo(video, reset = false) {
+  if (!video) return;
+
+  if (reset) {
+    video.currentTime = 0;
+  }
+
+  const promise = video.play();
+
+  if (promise !== undefined) {
+    promise.catch(() => {});
+  }
+}
+
+function ProjectRow({ project, index }) {
+  const revealDelay = index === 0 ? "" : ` reveal-delay-${index}`;
+  const teaser = project.description.slice(0, 2).join(" ");
+
+  return (
+    <>
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noreferrer"
+        className={`project-item magnetic-target group reveal${revealDelay} relative hidden cursor-none grid-cols-[60px_minmax(0,1fr)_118px] items-center gap-8 overflow-hidden border-t border-t-[rgba(242,237,228,0.07)] px-0 py-8 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[linear-gradient(90deg,rgba(200,255,0,0.085),rgba(200,255,0,0.018),transparent)] before:transition-all before:duration-500 before:ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:before:w-full md:grid`}
+      >
+        <div className="relative z-[1] [font-family:var(--mono)] text-[11px] text-[rgba(242,237,228,0.28)] transition-colors duration-300 group-hover:text-[var(--acid)]">
+          {project.id}
+        </div>
+
+        <div className="relative z-[1] min-w-0">
+          <div className="[font-family:var(--syne)] text-[clamp(24px,3vw,38px)] font-bold leading-[1.02] text-[var(--white)] transition-colors duration-300 group-hover:text-[var(--acid)]">
+            {project.title}
+          </div>
+
+          <div className="project-desc-wrap relative mt-4 max-h-[58px] overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-8 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),var(--black))] after:transition-opacity after:duration-300 group-hover:max-h-[190px] group-hover:after:opacity-0">
+            <p className="project-desc max-w-[700px] [font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.46)]">
+              {project.description.map((line, lineIndex) => (
+                <span
+                  key={line}
+                  className={`block transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    lineIndex > 1
+                      ? "translate-y-1 opacity-35 blur-[3px] group-hover:translate-y-0 group-hover:opacity-100 group-hover:blur-0"
+                      : ""
+                  }`}
+                >
+                  {line}
+                </span>
+              ))}
+            </p>
+          </div>
+        </div>
+
+        <div className="relative z-[1] flex flex-col items-end gap-2 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[rgba(242,237,228,0.55)] transition-colors duration-300 group-hover:text-[var(--acid)]">
+          <span className="project-arrow block text-4xl leading-none text-[rgba(200,255,0,0.82)] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+            {"\u2197"}
+          </span>
+          <span>View Project</span>
+        </div>
+
+        <div className="project-preview pointer-events-none absolute right-[90px] top-1/2 z-[2] hidden w-[280px] -translate-y-1/2 md:block lg:right-[120px]">
+          <div className="project-preview-shell rounded-lg border border-[rgba(200,255,0,0.24)] bg-[rgba(8,8,8,0.94)] p-2.5 opacity-0 shadow-[0_24px_80px_rgba(0,0,0,0.5),0_0_36px_rgba(200,255,0,0.06)] backdrop-blur-md">
+            <video
+              className="h-[152px] w-full rounded-md object-cover"
+              muted
+              loop
+              playsInline
+              preload="metadata"
+            >
+              <source src={project.video} type="video/mp4" />
+            </video>
+            <div className="mt-2 flex items-center justify-between [font-family:var(--mono)] text-[10px] uppercase tracking-[0.15em] text-[var(--acid)]">
+              <span>Preview</span>
+              <span>{"\u2197"}</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noreferrer"
+        className={`group reveal${revealDelay} block rounded-xl border border-[rgba(242,237,228,0.08)] bg-[rgba(242,237,228,0.025)] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] transition-all duration-300 active:scale-[0.99] md:hidden`}
+      >
+        <div className="mb-3 [font-family:var(--mono)] text-[11px] text-[rgba(200,255,0,0.8)]">
+          {project.id}
+        </div>
+        <h3 className="[font-family:var(--syne)] text-[clamp(25px,8vw,34px)] font-bold leading-[1.02] text-[var(--white)]">
+          {project.title}
+        </h3>
+
+        <div className="my-5 overflow-hidden rounded-lg border border-[rgba(200,255,0,0.16)] bg-[rgba(0,0,0,0.28)]">
+          <video
+            data-mobile-video
+            className="aspect-video w-full object-cover"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            <source src={project.video} type="video/mp4" />
+          </video>
+        </div>
+
+        <p className="[font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.5)]">
+          {teaser}
+        </p>
+
+        <div className="mt-5 inline-flex items-center gap-3 rounded-full border border-[rgba(200,255,0,0.28)] bg-[rgba(200,255,0,0.08)] px-4 py-3 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--acid)]">
+          View Project
+          <span className="text-base leading-none">{"\u2197"}</span>
+        </div>
+      </a>
+    </>
+  );
+}
+
 function Work() {
   const workRef = useRef(null);
 
   useEffect(() => {
     const root = workRef.current;
-    if (!root) return;
+    if (!root) return undefined;
 
     const canHover = window.matchMedia(
       "(hover: hover) and (pointer: fine)",
     ).matches;
-    const items = Array.from(root.querySelectorAll(".project-item"));
+    const desktopItems = Array.from(root.querySelectorAll(".project-item"));
+    const mobileVideos = Array.from(root.querySelectorAll("[data-mobile-video]"));
     const cleanups = [];
-    let activeItem = null;
 
     if (canHover) {
-      items.forEach((item) => {
-        const descWrap = item.querySelector(".project-desc-wrap");
-        const desc = item.querySelector(".project-desc");
-        const preview = item.querySelector(".project-preview");
+      desktopItems.forEach((item) => {
+        const preview = item.querySelector(".project-preview-shell");
         const video = item.querySelector("video");
-        const link = item.dataset.link;
+        const descWrap = item.querySelector(".project-desc-wrap");
+        const arrow = item.querySelector(".project-arrow");
 
-        const onClick = () => {
-          gsap.to(item, {
-            scale: 0.97,
-            duration: 0.12,
-            yoyo: true,
-            repeat: 1,
-            ease: "power1.inOut",
-            onComplete: () => {
-              window.open(link, "_blank", "noopener, noreferrer");
-            },
-          });
-        };
-        item.addEventListener("click", onClick);
-        cleanups.push(() => {
-          item.removeEventListener("click", onClick);
+        if (!preview || !descWrap) return;
+
+        gsap.set(preview, {
+          autoAlpha: 0,
+          x: 28,
+          y: 8,
+          scale: 0.98,
+          rotate: 1.5,
+          transformOrigin: "50% 50%",
         });
-        if (!descWrap || !desc || !preview) return;
-
-        gsap.set(descWrap, { height: 54, overflow: "hidden" });
-        gsap.set(preview, { opacity: 0, x: 40, scale: 0.96, rotate: 2 });
-        gsap.set(item, { scale: 1 });
-
-        let expandTimeline = null;
 
         const onEnter = () => {
-          if (activeItem && activeItem !== item) {
-            activeItem.classList.remove("project-active");
+          gsap.to(item, {
+            scale: 1.008,
+            duration: 0.45,
+            ease: "power3.out",
+            overwrite: "auto",
+          });
+          gsap.to(preview, {
+            autoAlpha: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+            rotate: 0,
+            duration: 0.5,
+            ease: "power3.out",
+            overwrite: "auto",
+          });
+          gsap.to(descWrap, {
+            duration: 0.45,
+            ease: "power3.out",
+            overwrite: "auto",
+          });
+          if (arrow) {
+            gsap.to(arrow, {
+              x: 4,
+              y: -4,
+              duration: 0.35,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
           }
-          activeItem = item;
-          item.classList.add("project-active");
-
-          expandTimeline = gsap.timeline();
-
-          expandTimeline
-            .to(
-              item,
-              {
-                scale: 1.01,
-                duration: 0.45,
-                ease: "power3.out",
-                delay: 0.15,
-              },
-              0,
-            )
-            .to(
-              descWrap,
-              {
-                height: "auto",
-                duration: 0.5,
-                ease: "power3.out",
-                delay: 0.15,
-              },
-              0,
-            )
-            .fromTo(
-              desc.children,
-              { y: 8, opacity: 0 },
-              {
-                y: 0,
-                opacity: 1,
-                stagger: 0.025,
-                duration: 0.38,
-                ease: "power3.out",
-                delay: 0.2,
-              },
-              0,
-            )
-            .to(
-              preview,
-              {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                rotate: 0,
-                duration: 0.5,
-                ease: "power3.out",
-              },
-              0.25,
-            );
-
-          if (video) {
-            const playVideo = () => {
-              video.currentTime = 0;
-
-              const promise = video.play();
-              if (promise !== undefined) {
-                promise.catch(() => {});
-              }
-            };
-
-            if (video.readyState >= 2) {
-              playVideo();
-            } else {
-              video.addEventListener("loadeddata", playVideo, { once: true });
-            }
-          }
+          playVideo(video, true);
         };
 
         const onLeave = () => {
           gsap.to(item, {
-            scale: 1.005,
-            duration: 0.3,
-            ease: "power2.in",
-          });
-
-          gsap.to(descWrap, {
-            height: 54,
+            scale: 1,
             duration: 0.35,
-            ease: "power2.in",
+            ease: "power2.out",
+            overwrite: "auto",
           });
-
           gsap.to(preview, {
-            opacity: 0,
-            x: 40,
-            scale: 0.96,
-            rotate: 2,
+            autoAlpha: 0,
+            x: 28,
+            y: 8,
+            scale: 0.98,
+            rotate: 1.5,
             duration: 0.35,
-            ease: "power2.in",
+            ease: "power2.out",
+            overwrite: "auto",
           });
-
+          if (arrow) {
+            gsap.to(arrow, {
+              x: 0,
+              y: 0,
+              duration: 0.3,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          }
           if (video) video.pause();
         };
 
@@ -156,23 +266,33 @@ function Work() {
         cleanups.push(() => {
           item.removeEventListener("mouseenter", onEnter);
           item.removeEventListener("mouseleave", onLeave);
-          if (expandTimeline) expandTimeline.kill();
+          gsap.killTweensOf([item, preview, descWrap, arrow]);
+          if (video) video.pause();
         });
       });
-    } else {
-      items.forEach((item) => {
-        const descWrap = item.querySelector(".project-desc-wrap");
-        const desc = item.querySelector(".project-desc");
-        const preview = item.querySelector(".project-preview");
-        if (descWrap) {
-          gsap.set(descWrap, { height: "auto", overflow: "visible" });
-        }
-        if (desc) {
-          gsap.set(desc, { y: 0, opacity: 1 });
-        }
-        if (preview) {
-          gsap.set(preview, { opacity: 0, x: 40, scale: 0.96, rotate: 2 });
-        }
+    }
+
+    if (mobileVideos.length) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+
+            if (entry.isIntersecting) {
+              playVideo(video);
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.45 },
+      );
+
+      mobileVideos.forEach((video) => observer.observe(video));
+
+      cleanups.push(() => {
+        mobileVideos.forEach((video) => video.pause());
+        observer.disconnect();
       });
     }
 
@@ -183,17 +303,17 @@ function Work() {
     <section
       id="work"
       ref={workRef}
-      className="relative min-h-screen px-10 py-[120px] border-t border-t-[rgba(200,255,0,0.12)] max-[768px]:px-5 max-[768px]:py-20"
+      className="relative min-h-screen border-t border-t-[rgba(200,255,0,0.12)] px-5 py-20 md:px-10 md:py-[120px]"
     >
-      <div className="reveal flex items-end justify-between mb-16">
+      <div className="reveal mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="[font-family:var(--mono)] text-[10px] tracking-[0.25em] uppercase text-[var(--acid)] mb-4 flex items-center gap-3 before:content-[''] before:w-6 before:h-px before:bg-[var(--acid)]">
+          <div className="mb-4 flex items-center gap-3 [font-family:var(--mono)] text-[10px] uppercase tracking-[0.25em] text-[var(--acid)] before:h-px before:w-6 before:bg-[var(--acid)] before:content-['']">
             Selected Work
           </div>
-          <h2 className="[font-family:var(--syne)] font-extrabold [font-size:clamp(40px,6vw,80px)] leading-[0.9] tracking-[-0.03em]">
+          <h2 className="[font-family:var(--syne)] text-[clamp(42px,14vw,80px)] font-extrabold leading-[0.9] tracking-[-0.03em] md:text-[clamp(40px,6vw,80px)]">
             SYSTEMS <br />
             <span
-              className="block italic [font-family:var(--serif)] [font-size:clamp(60px,10vw,130px)] leading-[0.95] text-[var(--acid)]"
+              className="block [font-family:var(--serif)] text-[clamp(56px,18vw,118px)] italic leading-[0.95] text-[var(--acid)] md:text-[clamp(60px,10vw,130px)]"
               style={{
                 opacity: 0,
                 transform: "translateY(100%)",
@@ -205,155 +325,15 @@ function Work() {
             </span>
           </h2>
         </div>
-        <div className="[font-family:var(--mono)] text-[11px] text-[rgba(242,237,228,0.3)] tracking-[0.1em]">
+        <div className="[font-family:var(--mono)] text-[11px] uppercase tracking-[0.1em] text-[rgba(242,237,228,0.36)]">
           003 / projects
         </div>
       </div>
 
-      <div className="flex flex-col gap-0.5">
-        <div className="project-item group reveal relative grid [grid-template-columns:60px_1fr_auto] items-center gap-8 py-7 px-0 border-t border-t-[rgba(242,237,228,0.06)] cursor-none overflow-hidden before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0 before:bg-[rgba(200,255,0,0.04)] hover:before:w-full before:transition-all before:duration-[400ms] before:ease-[cubic-bezier(0.16,1,0.3,1)]" data-link = "https://appleiphone-project.vercel.app/">
-          <div className="[font-family:var(--mono)] text-[11px] text-[rgba(242,237,228,0.2)]">
-            001
-          </div>
-          <div className="relative z-[1]">
-            <div className="[font-family:var(--syne)] font-bold [font-size:clamp(22px,3vw,36px)] text-[var(--white)] mb-1.5 group-hover:text-[var(--acid)]">
-              iPhone 3D Experience
-            </div>
-            <div className="project-desc-wrap mt-3">
-              <p className="project-desc max-w-[740px] [font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.42)]">
-                <span className="block">
-                  A fully interactive 3D product interface built from scratch.
-                </span>
-                <span className="block">
-                  Not a clone - a reconstruction of how premium product
-                  experiences are engineered.
-                </span>
-                <span className="block">
-                  Integrated real-time 3D rendering using Three.js.
-                </span>
-                <span className="block">
-                  Built scroll-synced animation systems with GSAP.
-                </span>
-                <span className="block">
-                  Optimized motion and performance across devices.
-                </span>
-              </p>
-            </div>
-          </div>
-          <div className="text-2xl text-[rgba(242,237,228,0.15)] group-hover:text-[var(--acid)] group-hover:translate-x-1 group-hover:-translate-y-1">
-            ↗
-          </div>
-          <div className="project-preview pointer-events-none absolute right-[-18px] top-1/2 -translate-y-1/2 translate-x-full w-[260px] rounded-md border border-[rgba(200,255,0,0.22)] bg-[rgba(8,8,8,0.92)] p-2 shadow-[0_18px_60px_rgba(0,0,0,0.45)] max-[768px]:hidden">
-            <video
-              className="w-full h-[140px] object-cover rounded-[3px]"
-              muted
-              loop
-              playsInline
-              preload="auto"
-            >
-              <source src={iphoneVideo} type="video/mp4" />
-            </video>
-            <div className="mt-2 [font-family:var(--mono)] text-[10px] tracking-[0.15em] uppercase text-[var(--acid)]">
-              View Project ↗
-            </div>
-          </div>
-        </div>
-
-        <div className="project-item group reveal reveal-delay-1 relative grid [grid-template-columns:60px_1fr_auto] items-center gap-8 py-7 px-0 border-t border-t-[rgba(242,237,228,0.06)] cursor-none overflow-hidden before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0 before:bg-[rgba(200,255,0,0.04)] hover:before:w-full before:transition-all before:duration-[400ms] before:ease-[cubic-bezier(0.16,1,0.3,1)]" data-link= "https://k72-pink-three.vercel.app">
-          <div className="[font-family:var(--mono)] text-[11px] text-[rgba(242,237,228,0.2)]">
-            002
-          </div>
-          <div className="relative z-[1]">
-            <div className="[font-family:var(--syne)] font-bold [font-size:clamp(22px,3vw,36px)] text-[var(--white)] mb-1.5 group-hover:text-[var(--acid)]">
-              K72 Motion System
-            </div>
-            <div className="project-desc-wrap mt-3">
-              <p className="project-desc max-w-[740px] [font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.42)]">
-                <span className="block">
-                  An animation-first frontend focused on rhythm, pacing, and
-                  feel.
-                </span>
-                <span className="block">
-                  Designed interaction states as reusable motion patterns.
-                </span>
-                <span className="block">
-                  Built modular GSAP timelines for controlled sequencing.
-                </span>
-                <span className="block">
-                  Structured components for scalable visual choreography.
-                </span>
-                <span className="block">
-                  Balanced expressiveness with performance constraints.
-                </span>
-              </p>
-            </div>
-          </div>
-          <div className="text-2xl text-[rgba(242,237,228,0.15)] group-hover:text-[var(--acid)] group-hover:translate-x-1 group-hover:-translate-y-1">
-            ↗
-          </div>
-          <div className="project-preview pointer-events-none absolute right-[-18px] top-1/2 -translate-y-1/2 translate-x-full w-[260px] rounded-md border border-[rgba(200,255,0,0.22)] bg-[rgba(8,8,8,0.92)] p-2 shadow-[0_18px_60px_rgba(0,0,0,0.45)] max-[768px]:hidden">
-            <video
-              className="w-full h-[140px] object-cover rounded-[3px]"
-              muted
-              loop
-              playsInline
-              preload="auto"
-            >
-              <source src={k72Video} type="video/mp4" />
-            </video>
-            <div className="mt-2 [font-family:var(--mono)] text-[10px] tracking-[0.15em] uppercase text-[var(--acid)]">
-              View Project ↗
-            </div>
-          </div>
-        </div>
-
-        <div className="project-item group reveal reveal-delay-2 relative grid [grid-template-columns:60px_1fr_auto] items-center gap-8 py-7 px-0 border-t border-t-[rgba(242,237,228,0.06)] cursor-none overflow-hidden before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0 before:bg-[rgba(200,255,0,0.04)] hover:before:w-full before:transition-all before:duration-[400ms] before:ease-[cubic-bezier(0.16,1,0.3,1)]" data-link = "https://redefine-gaming-steel.vercel.app">
-          <div className="[font-family:var(--mono)] text-[11px] text-[rgba(242,237,228,0.2)]">
-            003
-          </div>
-          <div className="relative z-[1]">
-            <div className="[font-family:var(--syne)] font-bold [font-size:clamp(22px,3vw,36px)] text-[var(--white)] mb-1.5 group-hover:text-[var(--acid)]">
-              Zentry-Inspired Gaming Interface
-            </div>
-            <div className="project-desc-wrap mt-3">
-              <p className="project-desc max-w-[740px] [font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.42)]">
-                <span className="block">
-                  A high-intensity landing experience translated into performant
-                  frontend code.
-                </span>
-                <span className="block">
-                  Explored cinematic transitions and interaction layering.
-                </span>
-                <span className="block">
-                  Implemented composited motion stacks with responsive behavior.
-                </span>
-                <span className="block">
-                  Refined typography and movement to match a game-like tone.
-                </span>
-                <span className="block">
-                  Maintained smooth frame pacing under heavy animation load.
-                </span>
-              </p>
-            </div>
-          </div>
-          <div className="text-2xl text-[rgba(242,237,228,0.15)] group-hover:text-[var(--acid)] group-hover:translate-x-1 group-hover:-translate-y-1">
-            ↗
-          </div>
-          <div className="project-preview pointer-events-none absolute right-[-18px] top-1/2 -translate-y-1/2 translate-x-full w-[260px] rounded-md border border-[rgba(200,255,0,0.22)] bg-[rgba(8,8,8,0.92)] p-2 shadow-[0_18px_60px_rgba(0,0,0,0.45)] max-[768px]:hidden">
-            <video
-              className="w-full h-[140px] object-cover rounded-[3px]"
-              muted
-              loop
-              playsInline
-              preload="auto"
-            >
-              <source src={gamingVideo} type="video/mp4" />
-            </video>
-            <div className="mt-2 [font-family:var(--mono)] text-[10px] tracking-[0.15em] uppercase text-[var(--acid)]">
-              View Project ↗
-            </div>
-          </div>
-        </div>
+      <div className="flex flex-col gap-5 md:gap-0.5">
+        {projects.map((project, index) => (
+          <ProjectRow key={project.id} project={project} index={index} />
+        ))}
       </div>
     </section>
   );
