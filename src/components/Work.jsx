@@ -70,7 +70,7 @@ function ProjectRow({ project, index }) {
         href={project.link}
         target="_blank"
         rel="noreferrer"
-        className={`project-item group reveal${revealDelay} relative hidden cursor-none grid-cols-[60px_minmax(0,1fr)_128px] items-center gap-8 overflow-hidden border-t border-t-[rgba(242,237,228,0.07)] px-0 py-8 transition-[border-color,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[linear-gradient(90deg,rgba(200,255,0,0.085),rgba(200,255,0,0.018),transparent)] before:transition-all before:duration-500 before:ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-t-[rgba(200,255,0,0.22)] hover:before:w-full md:grid`}
+        className={`project-item group reveal${revealDelay} relative hidden cursor-none grid-cols-[60px_minmax(0,1fr)_128px] items-center gap-8 overflow-hidden border-t border-t-[rgba(242,237,228,0.07)] px-0 py-8 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[linear-gradient(90deg,rgba(200,255,0,0.085),rgba(200,255,0,0.018),transparent)] before:transition-all before:duration-500 before:ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-t-[rgba(200,255,0,0.22)] hover:before:w-full md:grid`}
       >
         <div className="relative z-[1] [font-family:var(--mono)] text-[11px] text-[rgba(242,237,228,0.28)] transition-colors duration-300 group-hover:text-[var(--acid)]">
           {project.id}
@@ -81,14 +81,14 @@ function ProjectRow({ project, index }) {
             {project.title}
           </div>
 
-          <div className="project-desc-wrap relative mt-4 max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-10 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),rgba(8,8,8,0.82)_72%,var(--black))] after:transition-opacity after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-h-[190px] group-hover:after:opacity-0">
+          <div className="project-desc-wrap relative mt-4 max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-14 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),rgba(8,8,8,0.45)_36%,rgba(8,8,8,0.72)_74%,var(--black))] after:transition-opacity after:duration-[560ms] after:ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-h-[190px] group-hover:after:opacity-0">
             <p className="project-desc max-w-[700px] [font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.46)]">
               {project.description.map((line, lineIndex) => (
                 <span
                   key={line}
                   className={`block transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     lineIndex > 1
-                      ? "translate-y-2 opacity-30 blur-[5px] group-hover:translate-y-0 group-hover:opacity-100 group-hover:blur-0"
+                      ? "translate-y-[8px] opacity-20 blur-[5px] group-hover:translate-y-0 group-hover:opacity-100 group-hover:blur-0"
                       : ""
                   }`}
                 >
@@ -99,8 +99,8 @@ function ProjectRow({ project, index }) {
           </div>
         </div>
 
-        <div className="relative z-[1] flex flex-col items-end gap-2 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[rgba(200,255,0,0.72)] transition-colors duration-300 group-hover:text-[var(--acid)]">
-          <span className="project-arrow block text-5xl leading-none text-[var(--acid)] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+        <div className="relative z-[1] flex flex-col items-end gap-2 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[rgba(242,237,228,0.45)] transition-colors duration-300 group-hover:text-[rgba(242,237,228,0.95)]">
+          <span className="project-arrow block text-3xl leading-none text-[rgba(200,255,0,0.72)] transition-colors duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-[var(--acid)]">
             {"\u2197"}
           </span>
           <span>View Project</span>
@@ -151,14 +151,14 @@ function ProjectRow({ project, index }) {
           </video>
         </div>
 
-        <div className="mobile-desc-wrap relative max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-10 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),rgba(8,8,8,0.82)_72%,var(--black))] after:transition-opacity after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)]">
-          <p className="[font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.5)]">
+        <div className="mobile-desc-wrap relative max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-14 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),rgba(8,8,8,0.45)_36%,rgba(8,8,8,0.72)_74%,var(--black))] after:transition-opacity after:duration-[560ms] after:ease-[cubic-bezier(0.16,1,0.3,1)]">
+          <p className="[font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.46)]">
             {project.description.map((line, lineIndex) => (
               <span
                 key={line}
                 className={`block transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   lineIndex > 1
-                    ? "mobile-desc-line-hidden translate-y-2 opacity-30 blur-[5px]"
+                    ? "mobile-desc-line-hidden translate-y-[8px] opacity-20 blur-[5px]"
                     : ""
                 }`}
               >
@@ -209,12 +209,6 @@ function Work() {
         });
 
         const onEnter = () => {
-          gsap.to(item, {
-            scale: 1.005,
-            duration: 0.45,
-            ease: "power3.out",
-            overwrite: "auto",
-          });
           gsap.to(preview, {
             autoAlpha: 1,
             x: 0,
@@ -227,9 +221,9 @@ function Work() {
           });
           if (arrow) {
             gsap.to(arrow, {
-              x: 4,
-              y: -4,
-              duration: 0.35,
+              x: 2,
+              y: -2,
+              duration: 0.28,
               ease: "power3.out",
               overwrite: "auto",
             });
@@ -238,12 +232,6 @@ function Work() {
         };
 
         const onLeave = () => {
-          gsap.to(item, {
-            scale: 1,
-            duration: 0.35,
-            ease: "power2.out",
-            overwrite: "auto",
-          });
           gsap.to(preview, {
             autoAlpha: 0,
             x: 26,
@@ -258,7 +246,7 @@ function Work() {
             gsap.to(arrow, {
               x: 0,
               y: 0,
-              duration: 0.3,
+              duration: 0.24,
               ease: "power2.out",
               overwrite: "auto",
             });

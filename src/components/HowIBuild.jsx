@@ -106,8 +106,8 @@ function HowIBuild() {
               animationSpeed={4.5}
               className={[
                 "magnetic-target reveal group overflow-hidden rounded-2xl border border-[rgba(200,255,0,0.08)] bg-[rgba(12,12,12,0.78)] p-6 backdrop-blur-sm transition duration-500 ease-out md:p-7 xl:p-8",
-                "hover:-translate-y-1 hover:border-[rgba(200,255,0,0.28)] hover:shadow-[0_18px_60px_rgba(200,255,0,0.08)]",
-                "max-[768px]:min-h-[205px] max-[768px]:rounded-xl max-[768px]:p-5 max-[768px]:hover:translate-y-0",
+                "hover:border-[rgba(200,255,0,0.28)] hover:shadow-[0_18px_60px_rgba(200,255,0,0.08)]",
+                "max-[768px]:min-h-[205px] max-[768px]:rounded-xl max-[768px]:p-5",
                 layout.card,
                 index < 2
                   ? "reveal-delay-1"
@@ -116,11 +116,15 @@ function HowIBuild() {
                     : "reveal-delay-3",
               ].join(" ")}
             >
-              {layout.featured ? (
-                <span className="pointer-events-none absolute -right-2 -top-10 z-0 [font-family:var(--syne)] text-[180px] font-extrabold leading-none tracking-[-0.08em] text-[rgba(200,255,0,0.035)] md:-right-1 md:-top-16 md:text-[260px] xl:text-[320px]">
-                  {step.number}
-                </span>
-              ) : null}
+              <span
+                className={`pointer-events-none absolute -right-2 -top-8 z-0 [font-family:var(--syne)] font-extrabold leading-none tracking-[-0.08em] ${
+                  layout.featured
+                    ? "text-[180px] text-[rgba(200,255,0,0.04)] md:text-[260px] xl:text-[320px]"
+                    : "text-[140px] text-[rgba(200,255,0,0.028)] md:text-[180px] xl:text-[220px]"
+                }`}
+              >
+                {step.number}
+              </span>
 
               <div className="relative z-10 flex h-full flex-col">
                 <div className="mb-8 flex items-center justify-between max-[768px]:mb-6">
