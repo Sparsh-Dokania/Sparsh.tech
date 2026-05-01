@@ -50,18 +50,6 @@ nav.nav-scrolled > div {
   border-color: rgba(200, 255, 0, 0.08);
 }
 
-body:has(a:hover) #cursor,
-body:has(button:hover) #cursor {
-  width: 48px;
-  height: 48px;
-  background: var(--acid);
-}
-
-body:has(a:hover) #cursor-ring,
-body:has(button:hover) #cursor-ring {
-  opacity: 0;
-}
-
 .reveal {
   opacity: 1;
   transform: translateY(0);
@@ -113,7 +101,7 @@ html.reveal-ready .reveal.in-view {
 }
 
 #cursor {
-  will-change: transform, width, height;
+  will-change: transform;
 }
 
 #cursor-ring {

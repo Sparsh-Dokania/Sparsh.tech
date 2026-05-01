@@ -100,7 +100,7 @@ function Navbar() {
             href="#hero"
             className="relative inline-block font-extrabold text-[15px] tracking-[0.12em] text-[var(--acid)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-[var(--white)] hover:-translate-y-[1px]"
           >
-            SN/
+            SD/
           </a>
 
           <div className="hidden md:flex gap-6">
