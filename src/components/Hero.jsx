@@ -164,7 +164,7 @@ function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="pointer-events-none absolute bottom-[max(18px,env(safe-area-inset-bottom))] left-1/2 flex -translate-x-1/2 flex-col items-center gap-1 text-[8px] uppercase leading-none tracking-[0.2em] text-[rgba(242,237,228,0.3)] opacity-0 animate-[fadeUp_0.8s_ease_0.9s_forwards] md:hidden">
+      <div className="pointer-events-none absolute bottom-[max(30px,env(safe-area-inset-bottom))] left-1/2 flex -translate-x-1/2 flex-col items-center gap-1 text-[8px] uppercase leading-none tracking-[0.2em] text-[rgba(242,237,228,0.3)] opacity-0 animate-[fadeUp_0.8s_ease_0.9s_forwards] md:hidden">
         <div
           className="h-[34px] w-px animate-[scroll-pulse_2s_ease-in-out_infinite]"
           style={{
