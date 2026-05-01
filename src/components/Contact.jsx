@@ -37,7 +37,7 @@ function Contact() {
         </a>
         <a
           className="inline-flex items-center gap-2.5 py-4 px-7 bg-transparent border border-[rgba(200,255,0,0.2)] text-[var(--white)] no-underline [font-family:var(--mono)] text-[11px] tracking-[0.15em] uppercase relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[var(--acid)] before:scale-x-0 before:origin-left before:z-0 before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.16,1,0.3,1)] hover:before:scale-x-100 hover:text-[var(--black)] hover:border-[var(--acid)]"
-          href="#"
+          href="https://drive.google.com/file/d/1qTcJli-GEDRkoyTgXat-wUTdP7ir0rW2/view?usp=sharing"
           target="_blank"
           rel="noopener"
         >
