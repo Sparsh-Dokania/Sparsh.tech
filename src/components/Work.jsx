@@ -63,7 +63,6 @@ function playVideo(video, reset = false) {
 
 function ProjectRow({ project, index }) {
   const revealDelay = index === 0 ? "" : ` reveal-delay-${index}`;
-  const teaser = project.description.slice(0, 2).join(" ");
 
   return (
     <>
@@ -71,7 +70,7 @@ function ProjectRow({ project, index }) {
         href={project.link}
         target="_blank"
         rel="noreferrer"
-        className={`project-item magnetic-target group reveal${revealDelay} relative hidden cursor-none grid-cols-[60px_minmax(0,1fr)_118px] items-center gap-8 overflow-hidden border-t border-t-[rgba(242,237,228,0.07)] px-0 py-8 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[linear-gradient(90deg,rgba(200,255,0,0.085),rgba(200,255,0,0.018),transparent)] before:transition-all before:duration-500 before:ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:before:w-full md:grid`}
+        className={`project-item group reveal${revealDelay} relative hidden cursor-none grid-cols-[60px_minmax(0,1fr)_128px] items-center gap-8 overflow-hidden border-t border-t-[rgba(242,237,228,0.07)] px-0 py-8 transition-[border-color,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[linear-gradient(90deg,rgba(200,255,0,0.085),rgba(200,255,0,0.018),transparent)] before:transition-all before:duration-500 before:ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-t-[rgba(200,255,0,0.22)] hover:before:w-full md:grid`}
       >
         <div className="relative z-[1] [font-family:var(--mono)] text-[11px] text-[rgba(242,237,228,0.28)] transition-colors duration-300 group-hover:text-[var(--acid)]">
           {project.id}
@@ -82,14 +81,14 @@ function ProjectRow({ project, index }) {
             {project.title}
           </div>
 
-          <div className="project-desc-wrap relative mt-4 max-h-[58px] overflow-hidden transition-[max-height] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-8 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),var(--black))] after:transition-opacity after:duration-300 group-hover:max-h-[190px] group-hover:after:opacity-0">
+          <div className="project-desc-wrap relative mt-4 max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-10 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),rgba(8,8,8,0.82)_72%,var(--black))] after:transition-opacity after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-h-[190px] group-hover:after:opacity-0">
             <p className="project-desc max-w-[700px] [font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.46)]">
               {project.description.map((line, lineIndex) => (
                 <span
                   key={line}
-                  className={`block transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  className={`block transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     lineIndex > 1
-                      ? "translate-y-1 opacity-35 blur-[3px] group-hover:translate-y-0 group-hover:opacity-100 group-hover:blur-0"
+                      ? "translate-y-2 opacity-30 blur-[5px] group-hover:translate-y-0 group-hover:opacity-100 group-hover:blur-0"
                       : ""
                   }`}
                 >
@@ -100,14 +99,14 @@ function ProjectRow({ project, index }) {
           </div>
         </div>
 
-        <div className="relative z-[1] flex flex-col items-end gap-2 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[rgba(242,237,228,0.55)] transition-colors duration-300 group-hover:text-[var(--acid)]">
-          <span className="project-arrow block text-4xl leading-none text-[rgba(200,255,0,0.82)] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+        <div className="relative z-[1] flex flex-col items-end gap-2 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[rgba(200,255,0,0.72)] transition-colors duration-300 group-hover:text-[var(--acid)]">
+          <span className="project-arrow block text-5xl leading-none text-[var(--acid)] transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
             {"\u2197"}
           </span>
           <span>View Project</span>
         </div>
 
-        <div className="project-preview pointer-events-none absolute right-[90px] top-1/2 z-[2] hidden w-[280px] -translate-y-1/2 md:block lg:right-[120px]">
+        <div className="project-preview pointer-events-none absolute right-[70px] top-1/2 z-[2] hidden w-[280px] -translate-y-1/2 md:block lg:right-[110px]">
           <div className="project-preview-shell rounded-lg border border-[rgba(200,255,0,0.24)] bg-[rgba(8,8,8,0.94)] p-2.5 opacity-0 shadow-[0_24px_80px_rgba(0,0,0,0.5),0_0_36px_rgba(200,255,0,0.06)] backdrop-blur-md">
             <video
               className="h-[152px] w-full rounded-md object-cover"
@@ -130,7 +129,7 @@ function ProjectRow({ project, index }) {
         href={project.link}
         target="_blank"
         rel="noreferrer"
-        className={`group reveal${revealDelay} block rounded-xl border border-[rgba(242,237,228,0.08)] bg-[rgba(242,237,228,0.025)] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] transition-all duration-300 active:scale-[0.99] md:hidden`}
+        className={`mobile-project-card group reveal${revealDelay} block rounded-xl border border-[rgba(242,237,228,0.08)] bg-[rgba(242,237,228,0.025)] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] transition-[border-color,background-color,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.99] [&.is-expanded]:border-[rgba(200,255,0,0.22)] [&.is-expanded]:bg-[rgba(200,255,0,0.035)] [&.is-expanded_.mobile-desc-line-hidden]:translate-y-0 [&.is-expanded_.mobile-desc-line-hidden]:opacity-100 [&.is-expanded_.mobile-desc-line-hidden]:blur-0 [&.is-expanded_.mobile-desc-wrap]:max-h-[260px] [&.is-expanded_.mobile-desc-wrap]:after:opacity-0 md:hidden`}
       >
         <div className="mb-3 [font-family:var(--mono)] text-[11px] text-[rgba(200,255,0,0.8)]">
           {project.id}
@@ -152,11 +151,24 @@ function ProjectRow({ project, index }) {
           </video>
         </div>
 
-        <p className="[font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.5)]">
-          {teaser}
-        </p>
+        <div className="mobile-desc-wrap relative max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-10 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),rgba(8,8,8,0.82)_72%,var(--black))] after:transition-opacity after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)]">
+          <p className="[font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.5)]">
+            {project.description.map((line, lineIndex) => (
+              <span
+                key={line}
+                className={`block transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  lineIndex > 1
+                    ? "mobile-desc-line-hidden translate-y-2 opacity-30 blur-[5px]"
+                    : ""
+                }`}
+              >
+                {line}
+              </span>
+            ))}
+          </p>
+        </div>
 
-        <div className="mt-5 inline-flex items-center gap-3 rounded-full border border-[rgba(200,255,0,0.28)] bg-[rgba(200,255,0,0.08)] px-4 py-3 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--acid)]">
+        <div className="mt-5 inline-flex min-h-11 items-center gap-3 rounded-full border border-[rgba(200,255,0,0.32)] bg-[rgba(200,255,0,0.09)] px-5 py-3 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--acid)]">
           View Project
           <span className="text-base leading-none">{"\u2197"}</span>
         </div>
@@ -183,23 +195,22 @@ function Work() {
       desktopItems.forEach((item) => {
         const preview = item.querySelector(".project-preview-shell");
         const video = item.querySelector("video");
-        const descWrap = item.querySelector(".project-desc-wrap");
         const arrow = item.querySelector(".project-arrow");
 
-        if (!preview || !descWrap) return;
+        if (!preview) return;
 
         gsap.set(preview, {
           autoAlpha: 0,
-          x: 28,
-          y: 8,
-          scale: 0.98,
-          rotate: 1.5,
+          x: 26,
+          y: 10,
+          scale: 0.96,
+          rotate: 1.2,
           transformOrigin: "50% 50%",
         });
 
         const onEnter = () => {
           gsap.to(item, {
-            scale: 1.008,
+            scale: 1.005,
             duration: 0.45,
             ease: "power3.out",
             overwrite: "auto",
@@ -210,11 +221,6 @@ function Work() {
             y: 0,
             scale: 1,
             rotate: 0,
-            duration: 0.5,
-            ease: "power3.out",
-            overwrite: "auto",
-          });
-          gsap.to(descWrap, {
             duration: 0.45,
             ease: "power3.out",
             overwrite: "auto",
@@ -240,10 +246,10 @@ function Work() {
           });
           gsap.to(preview, {
             autoAlpha: 0,
-            x: 28,
-            y: 8,
-            scale: 0.98,
-            rotate: 1.5,
+            x: 26,
+            y: 10,
+            scale: 0.96,
+            rotate: 1.2,
             duration: 0.35,
             ease: "power2.out",
             overwrite: "auto",
@@ -266,29 +272,33 @@ function Work() {
         cleanups.push(() => {
           item.removeEventListener("mouseenter", onEnter);
           item.removeEventListener("mouseleave", onLeave);
-          gsap.killTweensOf([item, preview, descWrap, arrow]);
+          gsap.killTweensOf([item, preview, arrow]);
           if (video) video.pause();
         });
       });
     }
 
     if (mobileVideos.length) {
+      const mobileCards = Array.from(root.querySelectorAll(".mobile-project-card"));
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            const video = entry.target;
+            const card = entry.target;
+            const video = card.querySelector("[data-mobile-video]");
 
             if (entry.isIntersecting) {
+              card.classList.add("is-expanded");
               playVideo(video);
             } else {
-              video.pause();
+              card.classList.remove("is-expanded");
+              if (video) video.pause();
             }
           });
         },
         { threshold: 0.45 },
       );
 
-      mobileVideos.forEach((video) => observer.observe(video));
+      mobileCards.forEach((card) => observer.observe(card));
 
       cleanups.push(() => {
         mobileVideos.forEach((video) => video.pause());
