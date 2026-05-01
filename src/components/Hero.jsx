@@ -1,12 +1,64 @@
 import { useEffect, useRef } from "react";
 import ProximityRotateText from "./ProximityRotateText";
 
+const SPOTLIGHT_BASE_ROTATE = 28;
+
+function Spotlight({ className = "", fill = "var(--acid)", spotlightRef }) {
+  return (
+    <svg
+      ref={spotlightRef}
+      className={`pointer-events-none absolute z-[1] opacity-0 ${className}`}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 3787 2842"
+      fill="none"
+      aria-hidden="true"
+    >
+      <g filter="url(#hero-spotlight-filter)">
+        <ellipse
+          cx="1924.71"
+          cy="273.501"
+          rx="1924.71"
+          ry="273.501"
+          transform="matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)"
+          fill={fill}
+          fillOpacity="0.22"
+        />
+      </g>
+      <defs>
+        <filter
+          id="hero-spotlight-filter"
+          x="0.860352"
+          y="0.838989"
+          width="3785.16"
+          height="2840.26"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feGaussianBlur
+            stdDeviation="151"
+            result="effect1_foregroundBlur_1065_8"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
 function Hero() {
   const glowRef = useRef(null);
+  const spotlightRef = useRef(null);
 
   useEffect(() => {
     const glow = glowRef.current;
-    if (!glow) return;
+    const spotlight = spotlightRef.current;
+    if (!glow && !spotlight) return;
 
     const canHover = window.matchMedia(
       "(pointer: fine) and (min-width: 768px)",
@@ -16,36 +68,77 @@ function Hero() {
     let idleTimer = 0;
     let currentX = 0;
     let currentY = 0;
+    let currentSpotlightX = 0;
+    let currentSpotlightY = 0;
+    let currentSpotlightRotate = 0;
     let targetX = 0;
     let targetY = 0;
+    let targetSpotlightX = 0;
+    let targetSpotlightY = 0;
+    let targetSpotlightRotate = 0;
 
     const setGlowTransform = (x, y) => {
+      if (!glow) return;
+
       glow.style.transform = `translate(-50%, -50%) translate3d(${x.toFixed(
         2,
       )}px, ${y.toFixed(2)}px, 0)`;
     };
 
+    const setSpotlightTransform = (x, y, rotate) => {
+      if (!spotlight) return;
+
+      spotlight.style.transform = `translate3d(${x.toFixed(
+        2,
+      )}px, ${y.toFixed(
+        2,
+      )}px, 0) rotate(${(SPOTLIGHT_BASE_ROTATE + rotate).toFixed(2)}deg) scale(1)`;
+    };
+
     const resetTarget = () => {
       targetX = 0;
       targetY = 0;
+      targetSpotlightX = 0;
+      targetSpotlightY = 0;
+      targetSpotlightRotate = 0;
       startAnimation();
     };
 
     const animate = () => {
       currentX += (targetX - currentX) * 0.08;
       currentY += (targetY - currentY) * 0.08;
+      currentSpotlightX += (targetSpotlightX - currentSpotlightX) * 0.055;
+      currentSpotlightY += (targetSpotlightY - currentSpotlightY) * 0.055;
+      currentSpotlightRotate +=
+        (targetSpotlightRotate - currentSpotlightRotate) * 0.045;
 
       setGlowTransform(currentX, currentY);
+      setSpotlightTransform(
+        currentSpotlightX,
+        currentSpotlightY,
+        currentSpotlightRotate,
+      );
 
       if (
         Math.abs(targetX - currentX) > 0.05 ||
-        Math.abs(targetY - currentY) > 0.05
+        Math.abs(targetY - currentY) > 0.05 ||
+        Math.abs(targetSpotlightX - currentSpotlightX) > 0.05 ||
+        Math.abs(targetSpotlightY - currentSpotlightY) > 0.05 ||
+        Math.abs(targetSpotlightRotate - currentSpotlightRotate) > 0.01
       ) {
         rafId = window.requestAnimationFrame(animate);
       } else {
         currentX = targetX;
         currentY = targetY;
+        currentSpotlightX = targetSpotlightX;
+        currentSpotlightY = targetSpotlightY;
+        currentSpotlightRotate = targetSpotlightRotate;
         setGlowTransform(currentX, currentY);
+        setSpotlightTransform(
+          currentSpotlightX,
+          currentSpotlightY,
+          currentSpotlightRotate,
+        );
         rafId = 0;
       }
     };
@@ -64,6 +157,9 @@ function Hero() {
 
       targetX = normalizedX * 24;
       targetY = normalizedY * 16;
+      targetSpotlightX = normalizedX * 12;
+      targetSpotlightY = normalizedY * 8;
+      targetSpotlightRotate = normalizedX * 1.2 + normalizedY * 0.8;
 
       window.clearTimeout(idleTimer);
       idleTimer = window.setTimeout(resetTarget, 1400);
@@ -75,6 +171,7 @@ function Hero() {
     };
 
     setGlowTransform(0, 0);
+    setSpotlightTransform(0, 0, 0);
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("mouseleave", resetTarget);
@@ -97,7 +194,7 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen flex-col justify-end overflow-hidden"
+      className="relative flex min-h-screen flex-col justify-end overflow-hidden bg-[var(--black)]"
     >
       <style>
         {`
@@ -111,18 +208,32 @@ function Hero() {
               transform: translateY(0);
             }
           }
+
+          @keyframes hero-spotlight {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: var(--spotlight-opacity, 0.24);
+            }
+          }
         `}
       </style>
 
       {/* Background */}
       <div
-        className="absolute inset-0 animate-[grid-drift_20s_ease-in-out_infinite_alternate]"
+        className="absolute inset-0 z-0 animate-[grid-drift_20s_ease-in-out_infinite_alternate]"
         aria-hidden="true"
         style={{
           backgroundImage:
             "linear-gradient(rgba(200,255,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(200,255,0,0.04) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
+      />
+
+      <Spotlight
+        spotlightRef={spotlightRef}
+        className="-top-[14%] -right-[42%] h-[92%] w-[150%] origin-[82%_8%] opacity-0 [--spotlight-opacity:0.16] animate-[hero-spotlight_2.6s_ease_0.35s_forwards] mix-blend-screen will-change-transform sm:-top-[16%] sm:-right-[28%] sm:h-[100%] sm:w-[132%] sm:[--spotlight-opacity:0.18] md:-top-[18%] md:-right-[16%] md:h-[112%] md:w-[108%] md:[--spotlight-opacity:0.24] lg:-top-[17%] lg:-right-[12%] lg:h-[116%] lg:w-[96%] lg:[--spotlight-opacity:0.26]"
       />
 
       {/* Content */}

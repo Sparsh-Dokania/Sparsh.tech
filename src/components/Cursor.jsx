@@ -44,22 +44,28 @@ function Cursor() {
 
     setCursorAvailability();
 
-    const moveCursor = (x, y) => {
-      gsap.to(dot, {
-        x,
-        y,
-        duration: 0.1,
-        ease: "power3.out",
-        overwrite: "auto",
-      });
+    const dotXTo = gsap.quickTo(dot, "x", {
+      duration: 0.08,
+      ease: "power3.out",
+    });
+    const dotYTo = gsap.quickTo(dot, "y", {
+      duration: 0.08,
+      ease: "power3.out",
+    });
+    const ringXTo = gsap.quickTo(ring, "x", {
+      duration: 0.24,
+      ease: "power3.out",
+    });
+    const ringYTo = gsap.quickTo(ring, "y", {
+      duration: 0.24,
+      ease: "power3.out",
+    });
 
-      gsap.to(ring, {
-        x,
-        y,
-        duration: 0.22,
-        ease: "power3.out",
-        overwrite: "auto",
-      });
+    const moveCursor = (x, y) => {
+      dotXTo(x);
+      dotYTo(y);
+      ringXTo(x);
+      ringYTo(y);
     };
 
     const moveActiveTarget = () => {
@@ -182,9 +188,22 @@ function Cursor() {
     document.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("resize", onResize);
 
+    if (coarsePointerQuery.addEventListener) {
+      coarsePointerQuery.addEventListener("change", onResize);
+    } else {
+      coarsePointerQuery.addListener(onResize);
+    }
+
     cleanups.push(() => {
       document.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("resize", onResize);
+
+      if (coarsePointerQuery.removeEventListener) {
+        coarsePointerQuery.removeEventListener("change", onResize);
+      } else {
+        coarsePointerQuery.removeListener(onResize);
+      }
+
       document.body.style.cursor = "";
       gsap.killTweensOf([dot, ring, ...targets, ...previews]);
     });

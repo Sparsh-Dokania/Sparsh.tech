@@ -1,3 +1,8 @@
+import TextReveal from "./TextReveal";
+
+const bodyTextClass =
+  "text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8";
+
 function About() {
   return (
     <section
@@ -37,7 +42,7 @@ function About() {
             </div>
             <div className="py-6 px-5 bg-[var(--black)]">
               <div className="[font-family:var(--syne)] font-extrabold text-[42px] text-[var(--acid)] leading-none">
-                ∞
+                &infin;
               </div>
               <div className="text-[10px] tracking-[0.15em] uppercase text-[rgba(242,237,228,0.4)] mt-1.5">
                 Curiosity
@@ -46,35 +51,28 @@ function About() {
           </div>
         </div>
         <div className="reveal reveal-delay-1">
-          <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
-            I&apos;m Sparsh Dokania — a frontend-focused builder working at the intersection of
-            engineering and experience.
-          </p>
-          <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
-            Most interfaces today are static. They render.
-            <br />
-            I&apos;m more interested in how they respond.
-          </p>
-          <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
-            Every project I build is an attempt to push that line — making interfaces feel alive,
-            intentional, and reactive.
-          </p>
-          <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
-            No internships. No agency work.
-            <br />
-            Just self-built systems, broken things, and rebuilt them better.
-          </p>
-          <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-8 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
-            Currently expanding into backend to understand the full system — not just how it looks,
-            but how it works underneath.
-          </p>
-          <p className="text-[13px] leading-[2] text-[rgba(242,237,228,0.55)] mb-0 [&_strong]:text-[var(--white)] [&_strong]:font-bold">
-            No templates. No copy-paste. Everything here was built to understand — not just to show.
-          </p>
+          <TextReveal className={bodyTextClass} delay={0.05}>
+            I&apos;m Sparsh Dokania &mdash; a frontend-focused builder working at the intersection of engineering and experience.
+          </TextReveal>
+          <TextReveal className={bodyTextClass} delay={0.1}>
+            Most interfaces today are static. They render. I&apos;m more interested in how they respond.
+          </TextReveal>
+          <TextReveal className={bodyTextClass} delay={0.15}>
+            Every project I build is an attempt to push that line &mdash; making interfaces feel alive, intentional, and reactive.
+          </TextReveal>
+          <TextReveal className={bodyTextClass} delay={0.2}>
+            No internships. No agency work. Just self-built systems, broken things, and rebuilt them better.
+          </TextReveal>
+          <TextReveal className={bodyTextClass} delay={0.25}>
+            Currently expanding into backend to understand the full system &mdash; not just how it looks, but how it works underneath.
+          </TextReveal>
+          <TextReveal className={`${bodyTextClass} mb-0`} delay={0.3}>
+            No templates. No copy-paste. Everything here was built to understand &mdash; not just to show.
+          </TextReveal>
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default About
+export default About;
