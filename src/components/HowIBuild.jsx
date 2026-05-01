@@ -105,7 +105,7 @@ function HowIBuild() {
               ]}
               animationSpeed={4.5}
               className={[
-                "magnetic-target reveal group overflow-hidden rounded-2xl border border-[rgba(200,255,0,0.08)] bg-[rgba(12,12,12,0.78)] p-6 backdrop-blur-sm transition duration-500 ease-out md:p-7 xl:p-8",
+                "reveal group overflow-hidden rounded-2xl border border-[rgba(200,255,0,0.08)] bg-[rgba(12,12,12,0.78)] p-6 backdrop-blur-sm transition duration-500 ease-out md:p-7 xl:p-8",
                 "hover:border-[rgba(200,255,0,0.28)] hover:shadow-[0_18px_60px_rgba(200,255,0,0.08)]",
                 "max-[768px]:min-h-[205px] max-[768px]:rounded-xl max-[768px]:p-5",
                 layout.card,

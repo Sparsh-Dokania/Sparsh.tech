@@ -81,14 +81,18 @@ function ProjectRow({ project, index }) {
             {project.title}
           </div>
 
-          <div className="project-desc-wrap relative mt-4 max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-14 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),rgba(8,8,8,0.45)_36%,rgba(8,8,8,0.72)_74%,var(--black))] after:transition-opacity after:duration-[560ms] after:ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-h-[190px] group-hover:after:opacity-0">
+          <div className="project-desc-wrap relative mt-4 max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-14 after:bg-[linear-gradient(180deg,rgba(8,8,8,0)_0%,rgba(8,8,8,0.18)_30%,rgba(8,8,8,0.42)_58%,rgba(8,8,8,0.72)_82%,var(--black)_100%)] after:transition-opacity after:duration-[560ms] after:ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:max-h-[190px] group-hover:after:opacity-0">
             <p className="project-desc max-w-[700px] [font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.46)]">
               {project.description.map((line, lineIndex) => (
                 <span
                   key={line}
-                  className={`block transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                    lineIndex > 1
-                      ? "translate-y-[8px] opacity-20 blur-[5px] group-hover:translate-y-0 group-hover:opacity-100 group-hover:blur-0"
+                  className={`block transition-[transform,opacity,filter] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    lineIndex === 2
+                      ? "opacity-45 [filter:blur(2px)] group-hover:translate-y-0 group-hover:opacity-100 group-hover:[filter:blur(0px)]"
+                      : lineIndex === 3
+                      ? "translate-y-[6px] opacity-25 [filter:blur(4px)] group-hover:translate-y-0 group-hover:opacity-100 group-hover:[filter:blur(0px)]"
+                      : lineIndex === 4
+                      ? "translate-y-[12px] opacity-0 [filter:blur(6px)] group-hover:translate-y-0 group-hover:opacity-100 group-hover:[filter:blur(0px)]"
                       : ""
                   }`}
                 >
@@ -99,8 +103,8 @@ function ProjectRow({ project, index }) {
           </div>
         </div>
 
-        <div className="relative z-[1] flex flex-col items-end gap-2 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[rgba(242,237,228,0.45)] transition-colors duration-300 group-hover:text-[rgba(242,237,228,0.95)]">
-          <span className="project-arrow block text-3xl leading-none text-[rgba(200,255,0,0.72)] transition-colors duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-[var(--acid)]">
+        <div className="relative z-[1] flex flex-col items-end gap-2 [font-family:var(--mono)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--white)] opacity-60 transition-all duration-300 group-hover:tracking-[0.19em] group-hover:opacity-100">
+          <span className="project-arrow block text-3xl leading-none text-[var(--acid)] opacity-80 transition-opacity duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100">
             {"\u2197"}
           </span>
           <span>View Project</span>
@@ -129,7 +133,7 @@ function ProjectRow({ project, index }) {
         href={project.link}
         target="_blank"
         rel="noreferrer"
-        className={`mobile-project-card group reveal${revealDelay} block rounded-xl border border-[rgba(242,237,228,0.08)] bg-[rgba(242,237,228,0.025)] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] transition-[border-color,background-color,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.99] [&.is-expanded]:border-[rgba(200,255,0,0.22)] [&.is-expanded]:bg-[rgba(200,255,0,0.035)] [&.is-expanded_.mobile-desc-line-hidden]:translate-y-0 [&.is-expanded_.mobile-desc-line-hidden]:opacity-100 [&.is-expanded_.mobile-desc-line-hidden]:blur-0 [&.is-expanded_.mobile-desc-wrap]:max-h-[260px] [&.is-expanded_.mobile-desc-wrap]:after:opacity-0 md:hidden`}
+        className={`mobile-project-card group reveal${revealDelay} block rounded-xl border border-[rgba(242,237,228,0.08)] bg-[rgba(242,237,228,0.025)] p-4 shadow-[0_18px_50px_rgba(0,0,0,0.28)] transition-[border-color,background-color,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.99] [&.is-expanded]:border-[rgba(200,255,0,0.22)] [&.is-expanded]:bg-[rgba(200,255,0,0.035)] [&.is-expanded_.mobile-desc-line-hidden]:translate-y-0 [&.is-expanded_.mobile-desc-line-hidden]:opacity-100 [&.is-expanded_.mobile-desc-line-hidden]:[filter:blur(0px)] [&.is-expanded_.mobile-desc-wrap]:max-h-[260px] [&.is-expanded_.mobile-desc-wrap]:after:opacity-0 md:hidden`}
       >
         <div className="mb-3 [font-family:var(--mono)] text-[11px] text-[rgba(200,255,0,0.8)]">
           {project.id}
@@ -151,14 +155,18 @@ function ProjectRow({ project, index }) {
           </video>
         </div>
 
-        <div className="mobile-desc-wrap relative max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-14 after:bg-[linear-gradient(180deg,rgba(8,8,8,0),rgba(8,8,8,0.45)_36%,rgba(8,8,8,0.72)_74%,var(--black))] after:transition-opacity after:duration-[560ms] after:ease-[cubic-bezier(0.16,1,0.3,1)]">
+        <div className="mobile-desc-wrap relative max-h-[76px] overflow-hidden transition-[max-height] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-14 after:bg-[linear-gradient(180deg,rgba(8,8,8,0)_0%,rgba(8,8,8,0.18)_30%,rgba(8,8,8,0.42)_58%,rgba(8,8,8,0.72)_82%,var(--black)_100%)] after:transition-opacity after:duration-[560ms] after:ease-[cubic-bezier(0.16,1,0.3,1)]">
           <p className="[font-family:var(--mono)] text-[12px] leading-[1.85] text-[rgba(242,237,228,0.46)]">
             {project.description.map((line, lineIndex) => (
               <span
                 key={line}
-                className={`block transition-all duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  lineIndex > 1
-                    ? "mobile-desc-line-hidden translate-y-[8px] opacity-20 blur-[5px]"
+                className={`block transition-[transform,opacity,filter] duration-[560ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  lineIndex === 2
+                    ? "mobile-desc-line-hidden opacity-45 [filter:blur(2px)]"
+                    : lineIndex === 3
+                    ? "mobile-desc-line-hidden translate-y-[6px] opacity-25 [filter:blur(4px)]"
+                    : lineIndex === 4
+                    ? "mobile-desc-line-hidden translate-y-[12px] opacity-0 [filter:blur(6px)]"
                     : ""
                 }`}
               >
@@ -223,6 +231,7 @@ function Work() {
             gsap.to(arrow, {
               x: 2,
               y: -2,
+              scale: 1.03,
               duration: 0.28,
               ease: "power3.out",
               overwrite: "auto",
@@ -246,6 +255,7 @@ function Work() {
             gsap.to(arrow, {
               x: 0,
               y: 0,
+              scale: 1,
               duration: 0.24,
               ease: "power2.out",
               overwrite: "auto",
