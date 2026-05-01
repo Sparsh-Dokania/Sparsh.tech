@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import Cursor from "./components/Cursor";
+import Loader from "./components/Loader";
 import Ticker from "./components/Ticker";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -14,6 +16,7 @@ import "./styles.css";
 import { Analytics } from "@vercel/analytics/react";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -71,9 +74,22 @@ function App() {
     };
   }, []);
 
+  // Lock scroll while loader is active
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isLoading]);
+
   return (
     <>
-      <Cursor />
+      <AnimatePresence mode="wait">
+        {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
+
+      {!isLoading && <Cursor />}
       <Ticker />
       <Navbar />
       <main className="portfolio-scroll">

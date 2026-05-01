@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+// Adjust this import path depending on where you placed SparklesCore.jsx
+import { SparklesCore } from "./ui/SparklesCore";
 
 function Footer() {
   const containerRef = useRef(null);
@@ -48,6 +50,11 @@ function Footer() {
     });
   };
 
+  // Prevent heavy particle rendering for users preferring reduced motion
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   return (
     <footer
       ref={containerRef}
@@ -75,13 +82,35 @@ function Footer() {
           <h2 className="group [font-family:var(--serif)] text-[clamp(44px,8vw,110px)] italic leading-[0.95] text-[rgba(242,237,228,0.85)] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-[var(--white)] hover:drop-shadow-[0_0_30px_rgba(200,255,0,0.18)]">
             Built to respond.
           </h2>
+
+          {/* Sparkles / Energy Line */}
+          <div className="relative mt-4 h-[50px] w-[280px] md:h-[80px] md:w-[500px]">
+            {/* Subtle Horizon Signal Beam */}
+            <div className="absolute inset-x-0 top-1/2 h-[1px] -translate-y-1/2 bg-gradient-to-r from-transparent via-[rgba(200,255,0,0.3)] to-transparent blur-[1px]" />
+
+            {/* Masked Particles */}
+            <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_75%)]">
+              {!prefersReducedMotion && (
+                <SparklesCore
+                  id="footerSparkles"
+                  background="transparent"
+                  minSize={0.4}
+                  maxSize={1.4}
+                  particleDensity={120}
+                  className="h-full w-full"
+                  particleColor="#C8FF00"
+                  speed={1.8}
+                />
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Fill bottom spacing before utility row */}
         <div className="flex-1" />
 
         {/* Bottom Utility Row */}
-        <div className="mt-16 flex w-full flex-col items-center justify-between gap-5 border-t border-[rgba(242,237,228,0.04)] pt-8 md:mt-20 md:flex-row md:gap-0">
+        <div className="mt-8 flex w-full flex-col items-center justify-between gap-5 border-t border-[rgba(242,237,228,0.04)] pt-8 md:mt-10 md:flex-row md:gap-0">
           <div className="[font-family:var(--mono)] text-[10px] tracking-[0.15em] text-[rgba(242,237,228,0.25)]">
             © {new Date().getFullYear()} Sparsh Dokania
           </div>
