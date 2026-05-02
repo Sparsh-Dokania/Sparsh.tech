@@ -21,10 +21,13 @@
     scroll-padding-top: var(--section-scroll-offset);
     scroll-snap-type: y proximity;
     overscroll-behavior-y: contain;
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   body {
     @apply min-h-screen bg-[var(--black)] text-[var(--white)] [font-family:var(--mono)] overflow-x-hidden cursor-none;
+    max-width: 100%;
   }
 
   body::before {
