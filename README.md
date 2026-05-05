@@ -22,7 +22,7 @@ Crafted to showcase not only projects — but how interfaces should *feel*.
 
 <br/>
 
-[🌐 Live Demo](#-live-demo) •
+[🌐 Live Demo](sparshdev.vercel.dev) •
 [🛠 Tech Stack](#-tech-stack) •
 [✨ Features](#-features) •
 [🚀 Run Locally](#-run-locally)
