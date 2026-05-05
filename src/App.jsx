@@ -12,6 +12,7 @@ import HowIBuild from "./components/HowIBuild";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import PeerlistWidget from "./components/PeerlistWidget";
 import "./styles.css";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -103,6 +104,7 @@ function App() {
       </main>
       <Analytics />
       <Footer />
+      <PeerlistWidget />
     </>
   );
 }
